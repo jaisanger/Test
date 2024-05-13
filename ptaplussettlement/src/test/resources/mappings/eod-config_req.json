@@ -1,0 +1,32 @@
+{
+  "priority": 2,
+  "request": {
+      "method": "POST",
+      "url": "/eod-config",
+      "bodyPatterns": [
+          {
+              "equalToJson": {
+                  "settlementConfigRule": [
+                      {
+                          "batchId": "batch3"
+                      }
+                  ]
+              }
+          }
+      ]
+  },
+  "response": {
+      "status": "200",
+      "headers": {
+          "Content-Type": "application/json"
+      },
+      "bodyFileName": "eod-config_res.json"
+  }
+}
+
+
+
+
+
+
+

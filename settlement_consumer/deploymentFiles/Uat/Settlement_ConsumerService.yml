@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: p2m-pay-settlement-consumer
+  namespace: finoptaplus
+spec:
+  selector:
+    app: p2m-pay-settlement-consumer
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080

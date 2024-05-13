@@ -1,0 +1,19 @@
+curl --location 'http://localhost:8083/wrapper/batch' \
+--header 'Content-Type: application/json' \
+--data '{
+     "batchId": ["batch1","batch2","batch5"],
+     "appId": "APPPTA",
+     "userClass": "ptauser",
+     "apiExecutionMode": false
+ }'
+ 
+ 
+ curl --location 'http://localhost:8083/wrapper/eod' \
+--header 'Content-Type: application/json' \
+--data '{
+     "batchId": ["batch1","batch2","batch5"],
+     "appId": "APPPTA",
+     "userClass": "ptauser",
+     "apiExecutionMode": false
+ }'
+ 

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SettlementConsumerRoute.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">quarkus-application</a> &gt; <a href="index.source.html" class="el_package">com.finobank.pta</a> &gt; <span class="el_source">SettlementConsumerRoute.java</span></div><h1>SettlementConsumerRoute.java</h1><pre class="source lang-java linenums">package com.finobank.pta;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+
+import org.apache.camel.LoggingLevel;
+import org.apache.camel.builder.RouteBuilder;
+
+import org.eclipse.microprofile.config.inject.ConfigProperty;
+
+
+import io.minio.BucketExistsArgs;
+import io.minio.MakeBucketArgs;
+import io.minio.MinioClient;
+import io.minio.errors.ErrorResponseException;
+import io.minio.errors.MinioException;
+
+@ApplicationScoped
+<span class="nc" id="L19">public class SettlementConsumerRoute extends RouteBuilder {</span>
+
+        @ConfigProperty(name = &quot;minioConfig&quot;)
+        String minioConfig;
+
+        @Inject
+        MinioClient minioClient;
+
+        @ConfigProperty(name = &quot;settlementIFTftpUploadDir&quot;)
+        String settlementIFTftpUploadDir;
+
+		@ConfigProperty(name = &quot;updateMinioUploadStatus&quot;)
+    	String updateMinioUploadStatus;
+
+		// @ConfigProperty(name = &quot;updateReversalSuccessStatusBatchAudit&quot;)
+    	// String updateReversalSuccessStatusBatchAudit;
+
+		// @ConfigProperty(name = &quot;updateReversalFailureStatusBatchAudit&quot;)
+    	// String updateReversalFailureStatusBatchAudit;
+
+		// @ConfigProperty(name = &quot;updateReversalSuccessStatusSettlementLeg&quot;)
+    	// String updateReversalSuccessStatusSettlementLeg;
+
+		// @ConfigProperty(name = &quot;updateReversalFailureStatusSettlementLeg&quot;)
+    	// String updateReversalFailureStatusSettlementLeg;
+
+		@ConfigProperty(name = &quot;getIFTFileDetails&quot;)
+    	String getIFTFileDetails;
+
+        @Override
+        public void configure() throws Exception {
+               
+<span class="nc" id="L51">            onException(Exception.class)</span>
+<span class="nc" id="L52">                .handled(true)</span>
+<span class="nc" id="L53">                .log(LoggingLevel.ERROR, &quot;Route=SettlementConsumerRoute|Message = Exception Error : ${exception.message}&quot;)</span>
+<span class="nc" id="L54">				.choice()</span>
+<span class="nc" id="L55">					.when(simple(&quot;${exception.message} contains 'Cannot connect to'&quot;))</span>
+<span class="nc" id="L56">						.log(LoggingLevel.INFO, &quot;In Exception, calling route for settlement reversal&quot;)</span>
+<span class="nc" id="L57">						.to(&quot;direct:reverseSettlementTransactions&quot;)</span>
+<span class="nc" id="L58">				.end();</span>
+
+<span class="nc" id="L60">			onException(MinioException.class)</span>
+<span class="nc" id="L61">				.handled(true)</span>
+<span class="nc" id="L62">				.log(LoggingLevel.ERROR, &quot;Route=SettlementConsumerRoute|Message = MinioException Error : ${exception.message}&quot;);</span>
+			
+<span class="nc" id="L64">			onException(ErrorResponseException.class)</span>
+<span class="nc" id="L65">				.handled(true)</span>
+<span class="nc" id="L66">				.log(LoggingLevel.ERROR, &quot;Route=SettlementConsumerRoute|Message = ErrorResponseException Error : ${exception.message}&quot;);</span>
+
+<span class="nc" id="L68">			from(&quot;quartz:SettlementConsumerCron?cron={{settlementCron}}&quot;)</span>
+<span class="nc" id="L69">				.log(&quot;\n\nSettlementConsumer started at : ${date:now:dd-MM-yyyy hh:mm:ss}&quot;)</span>
+<span class="nc" id="L70">				.setHeader(&quot;producerBucket&quot;)</span>
+<span class="nc" id="L71">				.simple(&quot;{{glSettlementProducerBucketName}}-${date:now:dd-MM-yyyy}&quot;)</span>
+<span class="nc" id="L72">				.setHeader(&quot;consumerBucket&quot;)</span>
+<span class="nc" id="L73">				.simple(&quot;{{glSettlementConsumerBucketName}}-${date:now:dd-MM-yyyy}&quot;)</span>
+<span class="nc" id="L74">				.log(LoggingLevel.INFO, &quot;Route=SettlementConsumerRoute|Message=Settlement Consumer Bucket = ${header.consumerBucket}&quot;)</span>
+<span class="nc" id="L75">				.log(LoggingLevel.INFO, &quot;Route=SettlementConsumerRoute|Message=Settlement Producer Bucket = ${header.producerBucket}&quot;)</span>
+<span class="nc" id="L76">				.process(e -&gt; {</span>
+<span class="nc" id="L77">					boolean checkGlSettlementProducerBucket = minioClient.bucketExists(BucketExistsArgs.builder().bucket(e.getIn().getHeader(&quot;producerBucket&quot;).toString()).build());</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">					if (!checkGlSettlementProducerBucket)</span>
+<span class="nc" id="L79">						minioClient.makeBucket(MakeBucketArgs.builder().bucket(e.getIn().getHeader(&quot;producerBucket&quot;).toString()).build());</span>
+
+<span class="nc" id="L81">					String destination = e.getIn().getHeader(&quot;consumerBucket&quot;).toString();</span>
+<span class="nc" id="L82">					boolean destinationBucket = minioClient.bucketExists(BucketExistsArgs.builder().bucket(destination).build());</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">					if (!destinationBucket)</span>
+<span class="nc" id="L84">						minioClient.makeBucket(MakeBucketArgs.builder().bucket(destination).build());</span>
+<span class="nc" id="L85">					})</span>
+<span class="nc" id="L86">				.pollEnrich()</span>
+<span class="nc" id="L87">					.simple(&quot;minio://${header.producerBucket}?&quot; + minioConfig</span>
+									+ &quot;&amp;includeBody=true&amp;autoCloseBody=true&amp;moveAfterRead=true&amp;maxMessagesPerPoll=1&amp;destinationBucketName=${header.consumerBucket}&amp;sendEmptyMessageWhenIdle=true&amp;autoCreateBucket=false&quot;)
+<span class="nc" id="L89">				.log(LoggingLevel.INFO, &quot;Route=SettlementConsumerRoute|File body = ${body}&quot;)</span>
+<span class="nc" id="L90">				.log(LoggingLevel.INFO, &quot;Route=SettlementConsumerRoute|File Name = ${header.CamelMinioObjectName}&quot;)</span>
+<span class="nc" id="L91">				.choice()</span>
+<span class="nc" id="L92">					.when(simple(&quot;${body} == null&quot;))</span>
+<span class="nc" id="L93">						.log(LoggingLevel.INFO, &quot;Route=SettlementConsumerRoute| No file found&quot;)</span>
+<span class="nc" id="L94">					.otherwise()</span>
+<span class="nc" id="L95">						.setHeader(&quot;CamelFileName&quot;).simple(&quot;${header.CamelMinioObjectName}&quot;)</span>
+<span class="nc" id="L96">						.log(LoggingLevel.INFO, &quot;Route=SettlementConsumerRoute|Message= Moving IFT file into sftp, folder name :&quot;+ settlementIFTftpUploadDir)</span>
+<span class="nc" id="L97">						.removeHeader(&quot;CamelToEndpoint&quot;)</span>
+<span class="nc" id="L98">						.to(&quot;sftp://{{ftpUsername}}@{{ftpHost}}:{{ftpPort}}/{{settlementIFTftpUploadDir}}?preferredAuthentications=password&amp;password={{ftpPassword}}&amp;useUserKnownHostsFile=false&quot;)</span>
+<span class="nc" id="L99">						.setHeader(&quot;date_sftp_upload&quot;)</span>
+<span class="nc" id="L100">							.simple(&quot;${date:now:yyyy-MM-dd HH:mm:ss.SSS}&quot;)</span>
+<span class="nc" id="L101">						.setHeader(&quot;sftp_url&quot;)</span>
+<span class="nc" id="L102">							.simple(&quot;{{settlementIFTftpUploadDir}}/${header.CamelMinioObjectName}&quot;)</span>
+						//.to(&quot;sql:UPDATE public.ift_uploaded_file SET date_sftp_upload=:#date_sftp_upload,sftp_url=:#sftp_url WHERE file_name =:#CamelMinioObjectName;&quot;)
+<span class="nc" id="L104">						.setBody(simple(updateMinioUploadStatus</span>
+<span class="nc" id="L105">                                .replace(&quot;@{date_sftp_upload}&quot;, &quot;${header.date_sftp_upload}&quot;)</span>
+<span class="nc" id="L106">                                .replace(&quot;@{sftp_url}&quot;, &quot;${header.sftp_url}&quot;)</span>
+<span class="nc" id="L107">								.replace(&quot;@{file_name}&quot;, &quot;${header.CamelMinioObjectName}&quot;)))</span>
+						// .to(&quot;jdbc:camel&quot;)
+<span class="nc" id="L109">						.log(LoggingLevel.INFO, &quot;Route=SettlementConsumerRoute|Message= minio upload details updated in ift_uploaded_file table&quot;)</span>
+<span class="nc" id="L110">				.end()</span>
+<span class="nc" id="L111">			.end();</span>
+
+<span class="nc" id="L113">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

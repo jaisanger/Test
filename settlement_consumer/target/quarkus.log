@@ -1,0 +1,1 @@
+15:41:43 WARN  traceId=, parentId=, spanId=, sampled= [io.qu.config] (main) Unrecognized configuration key "quarkus.jaeger.enabled" was provided; it will be ignored; verify that the dependency extension for this configuration is set or that you did not make a typo

@@ -1,0 +1,100 @@
+{
+    "priority": 2,
+    "request": {
+        "method": "POST",
+        "url": "/esb/cbs/settlement/transactions",
+        "bodyPatterns": [
+            {
+                "equalToJson": {
+                    "appId":"FINOTLR",
+                    "valueDate":null,
+                    "analysisFlag":0,
+                    "reversalFlag":null,
+                    "isInclusive":0,
+                    "isClubbed":0,
+                    "referenceNo":"11111111111",
+                    "acctFundTransferLegs":[
+                       {
+                          "accountNumber":"88333555211",
+                          "amount":10.00,
+                          "currency":"INR",
+                          "creditDebitFlag":"D",
+                          "transactionType":"UPIMPUR",
+                          "transactionComment":"SETTLEMENTEOD1/11111111111/8212000102/11122023",
+                          "costCenter":"9001",
+                          "supportData":"ZRFUT8#11111111111~TCMT#SETTLEMENTEOD1/UPIMPUR/11111111111/11122023",
+                          "beneficiaryRefOrMmid":null,
+                          "beneficiaryMobile":null,
+                          "remitterMobile":null,
+                          "remitterMmid":null,
+                          "beneficiaryAccountNo":null,
+                          "beneficiaryIfsc":null,
+                          "remarks":null
+                       },
+                       {
+                          "accountNumber":"8212000102",
+                          "amount":10.00,
+                          "currency":"INR",
+                          "creditDebitFlag":"C",
+                          "transactionType":"UPIMPUR",
+                          "transactionComment":"SETTLEMENTEOD1/11111111111/88333555211/11122023",
+                          "costCenter":"9001",
+                          "supportData":"ZRFUT8#11111111111~TCMT#SETTLEMENTEOD1/UPIMPUR/11111111111/11122023",
+                          "beneficiaryRefOrMmid":null,
+                          "beneficiaryMobile":null,
+                          "remitterMobile":null,
+                          "remitterMmid":null,
+                          "beneficiaryAccountNo":null,
+                          "beneficiaryIfsc":null,
+                          "remarks":null
+                       },
+                       {
+                          "accountNumber":"88333555211",
+                          "amount":10.00,
+                          "currency":"INR",
+                          "creditDebitFlag":"D",
+                          "transactionType":"UPIMPUR",
+                          "transactionComment":"SETTLEMENTEOD1/11111111111/8212000102/11122023",
+                          "costCenter":"9001",
+                          "supportData":"ZRFUT8#11111111111~TCMT#SETTLEMENTEOD1/UPIMPUR/11111111111/11122023",
+                          "beneficiaryRefOrMmid":null,
+                          "beneficiaryMobile":null,
+                          "remitterMobile":null,
+                          "remitterMmid":null,
+                          "beneficiaryAccountNo":null,
+                          "beneficiaryIfsc":null,
+                          "remarks":null
+                       },
+                       {
+                          "accountNumber":"8212000102",
+                          "amount":10.00,
+                          "currency":"INR",
+                          "creditDebitFlag":"C",
+                          "transactionType":"UPIMPUR",
+                          "transactionComment":"SETTLEMENTEOD1/11111111111/88333555211/11122023",
+                          "costCenter":"9001",
+                          "supportData":"ZRFUT8#11111111111~TCMT#SETTLEMENTEOD1/UPIMPUR/11111111111/11122023",
+                          "beneficiaryRefOrMmid":null,
+                          "beneficiaryMobile":null,
+                          "remitterMobile":null,
+                          "remitterMmid":null,
+                          "beneficiaryAccountNo":null,
+                          "beneficiaryIfsc":null,
+                          "remarks":null
+                       }
+                    ]
+                 }
+            }
+        ]
+    },
+    "response": {
+        "status": "200",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "bodyFileName": "cbs_settlement_res.json"
+    }
+}
+
+
+

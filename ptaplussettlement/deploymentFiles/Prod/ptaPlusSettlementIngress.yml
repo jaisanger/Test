@@ -1,0 +1,69 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: p2m-pay-settlement-refactor
+  namespace: finoptaplus
+spec:
+  rules:
+    - host: microservice.apps.ocp4.example.com
+      http:
+        paths:
+          - path: /api/v1/settlement/p2mpay
+            pathType: Prefix
+            backend:
+              service:
+                name: p2m-pay-settlement-refactor
+                port:
+                  number: 80           
+    - host: microservice.apps.ocp4.example.com
+      http:
+        paths:
+          - path: /api/v1/settlement/p2mpay/eod
+            pathType: Prefix
+            backend:
+              service:
+                name: p2m-pay-settlement-refactor
+                port:
+                  number: 80
+    - host: microservice.apps.ocp4.example.com
+      http:
+        paths:
+          - path: /api/v1/settlement/cbs
+            pathType: Prefix
+            backend:
+              service:
+                name: p2m-pay-settlement-refactor
+                port:
+                  number: 80
+    - host: microservice.apps.ocp4.example.com
+      http:
+        paths:
+          - path: /api/v1/settlement/cbs/eod
+            pathType: Prefix
+            backend:
+              service:
+                name: p2m-pay-settlement-refactor
+                port:
+                  number: 80
+    - host: microservice.apps.ocp4.example.com
+      http:
+        paths:
+          - path: /PtaPlusSettlement
+            pathType: Prefix
+            backend:
+              service:
+                name: p2m-pay-settlement-refactor
+                port:
+                  number: 80
+    - host: microservice.apps.ocp4.example.com
+      http:
+        paths:
+          - path: /openapi/PtaPlusSettlement
+            pathType: Prefix
+            backend:
+              service:
+                name: p2m-pay-settlement-refactor
+                port:
+                  number: 80
+
+

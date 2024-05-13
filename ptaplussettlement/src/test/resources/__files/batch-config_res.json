@@ -1,0 +1,63 @@
+[
+    {
+      "batchId": "batch2",
+      "partnerSettlementRules": [
+        {
+          "partnerId": "partner2",
+          "ptaPartnerGl": "88333555210",
+          "ptaIntermediaryGl": "20000000002",
+          "ptaPurchaseGl": "20000000005",
+          "cbsPartnerGl": "88333555210",
+          "cbsIntermediaryGl": "20000000002",
+          "cbsPurchaseGl": "20000000005",
+          "costCenter": "9001",
+          "ptaTranType": "PTANREOD",
+          "cbsTranType": "PTANREOD",
+          "thresholdAmt": "10",
+          "thresholdTime": "15"
+        },
+        {
+          "partnerId": "partner3",
+          "ptaPartnerGl": "88333555211",
+          "ptaIntermediaryGl": "20000000002",
+          "ptaPurchaseGl": "20000000005",
+          "cbsPartnerGl": "88333555211",
+          "cbsIntermediaryGl": "20000000002",
+          "cbsPurchaseGl": "20000000005",
+          "costCenter": "9001",
+          "ptaTranType": "PTANREOD",
+          "cbsTranType": "PTANREOD",
+          "thresholdAmt": "5",
+          "thresholdTime": "5"
+        },
+        {
+          "partnerId": "partner2",
+          "ptaPartnerGl": "88333555210",
+          "ptaIntermediaryGl": "20000000002",
+          "ptaPurchaseGl": "20000000005",
+          "cbsPartnerGl": "88333555210",
+          "cbsIntermediaryGl": "20000000002",
+          "cbsPurchaseGl": "20000000005",
+          "costCenter": "9001",
+          "ptaTranType": "PTANREOD",
+          "cbsTranType": "PTANREOD",
+          "thresholdAmt": "10",
+          "thresholdTime": "15"
+        },
+        {
+          "partnerId": "partner3",
+          "ptaPartnerGl": "88333555211",
+          "ptaIntermediaryGl": "20000000002",
+          "ptaPurchaseGl": "20000000005",
+          "cbsPartnerGl": "88333555211",
+          "cbsIntermediaryGl": "20000000002",
+          "cbsPurchaseGl": "20000000005",
+          "costCenter": "9001",
+          "ptaTranType": "PTANREOD",
+          "cbsTranType": "PTANREOD",
+          "thresholdAmt": "5",
+          "thresholdTime": "5"
+        }
+      ]
+    }
+  ]

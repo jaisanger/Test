@@ -1,0 +1,34 @@
+kind: ConfigMap
+metadata:
+  name: update-gl-status
+  namespace: p2m-pay-application
+data:
+  todayDate: "0"
+  daysForDormancy: "730"
+  daysForInactivity: "183"
+  glbaseDn: ou=finoptaplusgl,dc=finoptaplus,dc=com
+  lastSettlementDateParam: lastTransactionDate
+  glsearchquery: select distinct id,gl_number,updated_at from gl_balance where DATE (updated_at)=Now();
+  inactiveGLsFilterdn: cn=inactiveGLsFilter,ou=finoPtaPlusGl,dc=finoptaplus,dc=com
+  dormantGLsFilterdn: cn=dormantGLsFilter,ou=finoPtaPlusGl,dc=finoptaplus,dc=com
+  quarkus.naming.enable-jndi: 'true'
+  quarkus.ldap.enabled: 'false'
+  quarkus.ldap.host: "10.16.0.51"
+  quarkus.ldap.port: "389"
+  quarkus.ldap.authentication: simple
+  quarkus.ldap.user: cn=Directory Manager
+  quarkus.ldap.password: redhat@123
+  quarkus.ldap.healthbasedn: dc=finoptaplus,dc=com
+  quarkus.ldap.timeout: "2000"
+  quarkus.ldap.pool.enabled: 'true'
+  quarkus.ldap.pool.initsize: "5"
+  quarkus.ldap.pool.maxsize: "5"
+  quarkus.ldap.pool.prefsize: "5"
+  quarkus.ldap.pool.debug: all
+  quarkus.ldap.pool.timeout: "10000"
+  quarkus.datasource.jdbc.url: jdbc:postgresql://p2m-uat-db-ha.p2m-uat-db.svc.cluster.local:5432/p2m_pay_transcation
+  quarkus.datasource.username: adminp2m
+  quarkus.datasource.password: redhat
+  quarkus.datasource.db-kind: postgresql
+  quarkus.datasource.jdbc.max-size: "16"
+  quarkus.jacoco.report-location: site/jacoco

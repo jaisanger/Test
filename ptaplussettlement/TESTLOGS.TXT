@@ -1,0 +1,1632 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< com.finobank.ptaplus:finobank-settlement >--------------
+[INFO] Building finobank-settlement 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[WARNING] The artifact io.quarkus:quarkus-jsch:jar:2.16.5.Final has been relocated to io.quarkiverse.jsch:quarkus-jsch:jar:1.0.0: io.quarkus:quarkus-jsch:2.16.5.Final was relocated to io.quarkiverse.jsch:quarkus-jsch:1.0.0 and is not managed by io.quarkus.platform:quarkus-bom:2.16.5.Final anymore. Please, update the groupId and add the corresponding version to the dependency declaration in your project configuration. For more information about this change, please refer to https://github.com/quarkusio/quarkus/wiki/Migration-Guide-2.6
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ finobank-settlement ---
+[INFO] Deleting /home/user/Music/UAT/fino/P2mSettlement/ptaplussettlement/target
+[INFO] 
+[INFO] --- resources:3.3.0:resources (default-resources) @ finobank-settlement ---
+[INFO] Copying 3 resources
+[INFO] 
+[INFO] --- quarkus:2.16.5.Final:generate-code (default) @ finobank-settlement ---
+[INFO] 
+[INFO] --- compiler:3.10.1:compile (default-compile) @ finobank-settlement ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 47 source files to /home/user/Music/UAT/fino/P2mSettlement/ptaplussettlement/target/classes
+[INFO] /home/user/Music/UAT/fino/P2mSettlement/ptaplussettlement/src/main/java/com/finobank/ptaplus/repository/logical/TransactionLeg.java: Some input files use unchecked or unsafe operations.
+[INFO] /home/user/Music/UAT/fino/P2mSettlement/ptaplussettlement/src/main/java/com/finobank/ptaplus/repository/logical/TransactionLeg.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- quarkus:2.16.5.Final:generate-code-tests (default) @ finobank-settlement ---
+[INFO] 
+[INFO] --- resources:3.3.0:testResources (default-testResources) @ finobank-settlement ---
+[INFO] Copying 12 resources
+[INFO] 
+[INFO] --- compiler:3.10.1:testCompile (default-testCompile) @ finobank-settlement ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 5 source files to /home/user/Music/UAT/fino/P2mSettlement/ptaplussettlement/target/test-classes
+[INFO] 
+[INFO] --- surefire:3.0.0-M7:test (default-test) @ finobank-settlement ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.finobank.ptaplus.fileTest
+2023-12-11 14:06:07,653 WARN  [io.qua.hib.orm.dep.HibernateOrmProcessor] (build-81) Could not find a suitable persistence unit for model classes:
+	- io.quarkus.hibernate.orm.panache.PanacheEntity
+2023-12-11 14:06:12,614 WARN  [io.qua.dep.ste.ClassTransformingBuildStep] (build-13) Cannot transform io.smallrye.context.Jdk12CompletableFutureWrapper as its containing application archive could not be found.
+2023-12-11 14:06:13,110 WARN  [io.qua.dep.ste.ClassTransformingBuildStep] (build-13) Cannot transform io.smallrye.context.Jdk12CompletionStageWrapper as its containing application archive could not be found.
+2023-12-11 14:06:16,661 WARN  [io.qua.config] (main) Unrecognized configuration key "quarkus.minio.access-key" was provided; it will be ignored; verify that the dependency extension for this configuration is set or that you did not make a typo
+2023-12-11 14:06:16,663 WARN  [io.qua.config] (main) Unrecognized configuration key "quarkus.h2.console.path" was provided; it will be ignored; verify that the dependency extension for this configuration is set or that you did not make a typo
+2023-12-11 14:06:16,664 WARN  [io.qua.config] (main) Unrecognized configuration key "quarkus.minio.allow-empty" was provided; it will be ignored; verify that the dependency extension for this configuration is set or that you did not make a typo
+2023-12-11 14:06:16,665 WARN  [io.qua.config] (main) Unrecognized configuration key "quarkus.minio.secret-key" was provided; it will be ignored; verify that the dependency extension for this configuration is set or that you did not make a typo
+2023-12-11 14:06:16,666 WARN  [io.qua.config] (main) Unrecognized configuration key "quarkus.minio.url" was provided; it will be ignored; verify that the dependency extension for this configuration is set or that you did not make a typo
+Hibernate: 
+    
+    drop table if exists cbs_settlement_table CASCADE 
+Hibernate: 
+    
+    drop table if exists gl_balance CASCADE 
+Hibernate: 
+    
+    drop table if exists settlement_audit CASCADE 
+Hibernate: 
+    
+    drop table if exists transaction_leg_amt CASCADE 
+Hibernate: 
+    
+    drop sequence if exists cbs_settlement_table_seq
+Hibernate: 
+    
+    drop sequence if exists fund_transfer_leg_seq
+Hibernate: 
+    
+    drop sequence if exists gl_balance_seq
+Hibernate: 
+    
+    drop sequence if exists settlement_audit_seq
+Hibernate: create sequence cbs_settlement_table_seq start with 1 increment by 1
+Hibernate: create sequence fund_transfer_leg_seq start with 1 increment by 1
+Hibernate: create sequence gl_balance_seq start with 1 increment by 1
+Hibernate: create sequence settlement_audit_seq start with 1 increment by 1
+Hibernate: 
+    
+    create table cbs_settlement_table (
+       id bigint not null,
+        cbs_response varchar(255),
+        cbs_reference_no varchar(255),
+        created_at timestamp not null,
+        cr_gl_account bigint,
+        cr_gl_available_balance_amount numeric(19,2),
+        cr_gl_account_balance_amount numeric(19,2) not null,
+        dr_gl_account bigint,
+        dr_gl_available_balance_amount numeric(19,2),
+        dr_gl_account_balance_amount numeric(19,2) not null,
+        is_charge boolean,
+        is_credit_account boolean,
+        is_debit_account boolean,
+        isEod boolean,
+        is_tax boolean,
+        posting_amount numeric(19,2),
+        posting_pair integer,
+        posting_sequence integer,
+        pta_trans_seq_no varchar(255) not null,
+        txn_reference_no varchar(255),
+        reversed boolean,
+        is_settled_at_cbs boolean,
+        settled_at_cbs timestamp,
+        settlement_id varchar(255),
+        transaction_type varchar(255),
+        value_date timestamp,
+        primary key (id)
+    )
+Hibernate: 
+    
+    create table gl_balance (
+       id bigint not null,
+        balance_amount numeric(19,2),
+        created_at timestamp not null,
+        gl_number bigint,
+        total_hold numeric(19,2),
+        total_lien numeric(19,2),
+        updated_at timestamp,
+        primary key (id)
+    )
+Hibernate: 
+    
+    create table settlement_audit (
+       id bigint not null,
+        batch_id varchar(255),
+        date_started timestamp,
+        failed_count integer,
+        file_name varchar(255),
+        isEod boolean,
+        is_running boolean,
+        last_updated timestamp,
+        processing_status varchar(255),
+        records_count integer,
+        reject_count integer,
+        remarks varchar(255),
+        date_responded timestamp,
+        result_file_name varchar(255),
+        settlement_id varchar(255),
+        is_api_mode boolean,
+        success_count integer,
+        primary key (id)
+    )
+Hibernate: 
+    
+    create table transaction_leg_amt (
+       id bigint not null,
+        is_settled_at_p2m boolean,
+        isEod boolean,
+        created_at timestamp not null,
+        cr_gl_account bigint,
+        cr_gl_available_balance_amount numeric(19,2),
+        cr_gl_account_balance_amount numeric(19,2) not null,
+        dr_gl_account bigint,
+        dr_gl_available_balance_amount numeric(19,2),
+        dr_gl_account_balance_amount numeric(19,2) not null,
+        is_charge boolean,
+        is_credit_account boolean,
+        is_debit_account boolean,
+        is_tax boolean,
+        posting_amount numeric(19,2),
+        posting_pair integer,
+        posting_sequence integer,
+        pta_trans_seq_no varchar(255) not null,
+        txn_reference_no varchar(255),
+        reversed boolean,
+        settled_at_p2m timestamp,
+        settlement_id varchar(255),
+        transaction_type varchar(255),
+        updated_at timestamp,
+        value_date timestamp,
+        primary key (id)
+    )
+Hibernate: 
+    
+    alter table gl_balance 
+       add constraint index_gl_number unique (gl_number)
+Hibernate: 
+    INSERT INTO public.transaction_leg_amt (id,created_at,cr_gl_account,cr_gl_account_balance_amount,dr_gl_account,dr_gl_account_balance_amount,is_charge,is_tax,posting_amount,posting_pair,posting_sequence,txn_reference_no,value_date,pta_trans_seq_no,reversed,transaction_type,is_credit_account,is_debit_account,cr_gl_available_balance_amount,dr_gl_available_balance_amount,updated_at,is_settled_at_p2m,settled_at_p2m,settlement_id,iseod) VALUES      (400,'2023-11-30 05:17:36.04',88333555211,698.00,8212000102,268.55,false,false,10.00,1,1,'UC331019330426011JNB','2023-11-30 05:17:36.038','P-99-1698750269786',false,'UPIMPUR',false,false,NULL,NULL,NULL,false,NULL,NULL,NULL),      (401,'2023-11-30 05:28:53.228',88333555211,708.00,8212000102,258.55,false,false,10.00,1,1,'UC331019330426013JNB','2023-11-30 05:28:53.226','P-99-1698750269781',false,'UPIMPUR',false,false,NULL,NULL,NULL,false,NULL,NULL,NULL),      (402,'2023-11-30 05:17:36.04',88333555211,718.00,8212000102,268.55,false,false,10.00,1,1,'UC331019330426011JNB','2023-11-30 05:17:36.038','P-99-1698750269786',false,'UPIMPUR',false,false,NULL,NULL,NULL,false,NULL,NULL,NULL),      (422,'2023-11-30 05:17:36.04',88333555211,718.00,8212000102,268.55,false,false,10.00,1,1,'11111111111','2023-11-30 05:17:36.038','P-0-11111111111',false,'UPIMPUR',false,false,NULL,NULL,NULL,false,NULL,NULL,NULL),      (403,'2023-11-30 05:28:53.228',88333555211,728.00,8212000102,258.55,false,false,10.00,1,1,'UC331019330426013JNB','2023-11-30 05:28:53.226','P-99-1698750269781',false,'UPIMPUR',false,false,NULL,NULL,NULL,false,NULL,NULL,NULL)
+2023-12-11 14:06:23,185 INFO  [org.apa.cam.qua.cor.CamelBootstrapRecorder] (main) Bootstrap runtime: org.apache.camel.quarkus.main.CamelMainRuntime
+2023-12-11 14:06:23,188 INFO  [org.apa.cam.mai.MainSupport] (main) Apache Camel (Main) 3.20.1 is starting
+2023-12-11 14:06:23,979 INFO  [org.apa.cam.com.fil.rem.RemoteFileEndpoint] (main) Endpoint is configured with noop=true so forcing endpoint to be idempotent as well
+2023-12-11 14:06:23,979 INFO  [org.apa.cam.com.fil.rem.RemoteFileEndpoint] (main) Using default memory based idempotent repository with cache max size: 1000
+2023-12-11 14:06:24,000 INFO  [org.apa.cam.imp.eng.AbstractCamelContext] (main) Apache Camel 3.20.1 (camel-1) is starting
+2023-12-11 14:06:24,457 INFO  [org.apa.cam.pro.ide.jdb.JdbcMessageIdRepository] (main) table created with query 'CREATE TABLE CAMEL_MESSAGEPROCESSED (processorName VARCHAR(255), messageId VARCHAR(100), createdAt TIMESTAMP, PRIMARY KEY (processorName, messageId))'
+2023-12-11 14:06:26,517 WARN  [org.apa.cam.com.fil.rem.SftpConsumer] (main) Error auto creating directory: uploads/Settlement/IFT_Response due Cannot connect to sftp://sftp_user@localhost:8007. This exception is ignored.: org.apache.camel.component.file.GenericFileOperationFailedException: Cannot connect to sftp://sftp_user@localhost:8007
+	at org.apache.camel.component.file.remote.SftpOperations.connect(SftpOperations.java:137)
+	at org.apache.camel.component.file.remote.RemoteFileConsumer.connectIfNecessary(RemoteFileConsumer.java:231)
+	at org.apache.camel.component.file.remote.SftpConsumer.doStart(SftpConsumer.java:68)
+	at org.apache.camel.support.service.BaseService.start(BaseService.java:119)
+	at org.apache.camel.support.service.ServiceHelper.startService(ServiceHelper.java:113)
+	at org.apache.camel.impl.engine.AbstractCamelContext.startService(AbstractCamelContext.java:3740)
+	at org.apache.camel.impl.engine.InternalRouteStartupManager.doStartOrResumeRouteConsumers(InternalRouteStartupManager.java:401)
+	at org.apache.camel.impl.engine.InternalRouteStartupManager.doStartRouteConsumers(InternalRouteStartupManager.java:319)
+	at org.apache.camel.impl.engine.InternalRouteStartupManager.safelyStartRouteServices(InternalRouteStartupManager.java:213)
+	at org.apache.camel.impl.engine.InternalRouteStartupManager.doStartOrResumeRoutes(InternalRouteStartupManager.java:147)
+	at org.apache.camel.impl.engine.AbstractCamelContext.doStartCamel(AbstractCamelContext.java:3425)
+	at org.apache.camel.impl.engine.AbstractCamelContext.doStartContext(AbstractCamelContext.java:3094)
+	at org.apache.camel.impl.engine.AbstractCamelContext.doStart(AbstractCamelContext.java:3049)
+	at org.apache.camel.support.service.BaseService.start(BaseService.java:119)
+	at org.apache.camel.impl.engine.AbstractCamelContext.start(AbstractCamelContext.java:2698)
+	at org.apache.camel.impl.DefaultCamelContext.start(DefaultCamelContext.java:262)
+	at org.apache.camel.quarkus.main.CamelMain.doStart(CamelMain.java:94)
+	at org.apache.camel.support.service.BaseService.start(BaseService.java:119)
+	at org.apache.camel.quarkus.main.CamelMain.startEngine(CamelMain.java:140)
+	at org.apache.camel.quarkus.main.CamelMainRuntime.start(CamelMainRuntime.java:49)
+	at org.apache.camel.quarkus.core.CamelBootstrapRecorder.start(CamelBootstrapRecorder.java:45)
+	at io.quarkus.deployment.steps.CamelBootstrapProcessor$boot173480958.deploy_0(Unknown Source)
+	at io.quarkus.deployment.steps.CamelBootstrapProcessor$boot173480958.deploy(Unknown Source)
+	at io.quarkus.runner.ApplicationImpl.doStart(Unknown Source)
+	at io.quarkus.runtime.Application.start(Application.java:101)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at io.quarkus.runner.bootstrap.StartupActionImpl.run(StartupActionImpl.java:253)
+	at io.quarkus.test.junit.QuarkusTestExtension.doJavaStart(QuarkusTestExtension.java:250)
+	at io.quarkus.test.junit.QuarkusTestExtension.ensureStarted(QuarkusTestExtension.java:592)
+	at io.quarkus.test.junit.QuarkusTestExtension.beforeAll(QuarkusTestExtension.java:640)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeBeforeAllCallbacks$12(ClassBasedTestDescriptor.java:395)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeBeforeAllCallbacks(ClassBasedTestDescriptor.java:395)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.before(ClassBasedTestDescriptor.java:211)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.before(ClassBasedTestDescriptor.java:84)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:148)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:147)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:127)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:90)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:55)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:102)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:54)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:86)
+	at org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:86)
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:55)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:223)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:175)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:139)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:456)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:169)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
+Caused by: com.jcraft.jsch.JSchException: java.net.ConnectException: Connection refused (Connection refused)
+	at com.jcraft.jsch.Util.createSocket(Util.java:394)
+	at com.jcraft.jsch.Session.connect(Session.java:215)
+	at org.apache.camel.component.file.remote.SftpOperations.tryConnect(SftpOperations.java:160)
+	at org.apache.camel.support.task.BlockingTask.lambda$run$0(BlockingTask.java:40)
+	at org.apache.camel.support.task.ForegroundTask.run(ForegroundTask.java:93)
+	at org.apache.camel.support.task.BlockingTask.run(BlockingTask.java:40)
+	at org.apache.camel.component.file.remote.SftpOperations.connect(SftpOperations.java:135)
+	... 75 more
+Caused by: java.net.ConnectException: Connection refused (Connection refused)
+	at java.base/java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:412)
+	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:255)
+	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:237)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.base/java.net.Socket.connect(Socket.java:609)
+	at java.base/java.net.Socket.connect(Socket.java:558)
+	at java.base/java.net.Socket.<init>(Socket.java:454)
+	at java.base/java.net.Socket.<init>(Socket.java:231)
+	at com.jcraft.jsch.Util$1.run(Util.java:362)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+
+2023-12-11 14:06:26,525 INFO  [org.apa.cam.mai.BaseMainSupport] (main) Property-placeholders summary
+2023-12-11 14:06:26,526 INFO  [org.apa.cam.mai.BaseMainSupport] (main)     [MicroProfilePropertiesSource] SETTLEMENT_IFT_PROCESSING_ROUTE=direct:settlement-ift-processing-route
+2023-12-11 14:06:26,526 INFO  [org.apa.cam.mai.BaseMainSupport] (main)     [MicroProfilePropertiesSource] fileStorageLocationErrorSettlement=/tmp/Error/Settlement
+2023-12-11 14:06:26,527 INFO  [org.apa.cam.mai.BaseMainSupport] (main)     [MicroProfilePropertiesSource] glSettlementProducerBucketName=glsettlementproducer
+2023-12-11 14:06:26,527 INFO  [org.apa.cam.mai.BaseMainSupport] (main)     [MicroProfilePropertiesSource] ftpUsername=sftp_user
+2023-12-11 14:06:26,527 INFO  [org.apa.cam.mai.BaseMainSupport] (main)     [MicroProfilePropertiesSource] ftpHost=localhost
+2023-12-11 14:06:26,528 INFO  [org.apa.cam.mai.BaseMainSupport] (main)     [MicroProfilePropertiesSource] ftpPort=8007
+2023-12-11 14:06:26,528 INFO  [org.apa.cam.mai.BaseMainSupport] (main)     [MicroProfilePropertiesSource] settlementIFTResultDownloadDir=uploads/Settlement/IFT_Response
+2023-12-11 14:06:26,528 INFO  [org.apa.cam.mai.BaseMainSupport] (main)     [MicroProfilePropertiesSource] ftpPassword=SFTPUSERPASSWORDHERE
+2023-12-11 14:06:26,529 INFO  [org.apa.cam.mai.BaseMainSupport] (main)     [MicroProfilePropertiesSource] settlementIFTResultDownloadDirPollingDelay=20
+2023-12-11 14:06:26,529 INFO  [org.apa.cam.mai.BaseMainSupport] (main)     [MicroProfilePropertiesSource] settlementIftFilePrefix=IFT_P2M_PTASETTLE_
+2023-12-11 14:06:26,529 INFO  [org.apa.cam.mai.BaseMainSupport] (main)     [MicroProfilePropertiesSource] fastExistsEnable=false
+2023-12-11 14:06:26,529 INFO  [org.apa.cam.mai.BaseMainSupport] (main)     [MicroProfilePropertiesSource] noopEnable=true
+2023-12-11 14:06:26,531 INFO  [org.apa.cam.imp.eng.AbstractCamelContext] (main) Routes startup (started:2)
+2023-12-11 14:06:26,532 INFO  [org.apa.cam.imp.eng.AbstractCamelContext] (main)     Started route1 (direct://settlement-ift-processing-route)
+2023-12-11 14:06:26,532 INFO  [org.apa.cam.imp.eng.AbstractCamelContext] (main)     Started route2 (sftp://sftp_user@localhost:8007/uploads/Settlement/IFT_Response)
+2023-12-11 14:06:26,532 INFO  [org.apa.cam.imp.eng.AbstractCamelContext] (main) Apache Camel 3.20.1 (camel-1) started in 2s989ms (build:0ms init:459ms start:2s530ms)
+2023-12-11 14:06:26,794 INFO  [io.quarkus] (main) finobank-settlement 1.0.0-SNAPSHOT on JVM (powered by Quarkus 2.16.5.Final) started in 24.086s. Listening on: http://localhost:8081
+2023-12-11 14:06:26,799 INFO  [io.quarkus] (main) Profile test activated. 
+2023-12-11 14:06:26,799 INFO  [io.quarkus] (main) Installed features: [agroal, camel-bindy, camel-core, camel-direct, camel-file, camel-ftp, camel-log, camel-minio, camel-sql, cdi, cucumber, hibernate-orm, hibernate-orm-panache, hibernate-validator, jacoco, jdbc-h2, jdbc-postgresql, jsch, micrometer, narayana-jta, opentelemetry, opentelemetry-otlp-exporter, rest-client, rest-client-jackson, resteasy, resteasy-jackson, smallrye-context-propagation, smallrye-health, smallrye-openapi, swagger-ui, vertx]
+2023-12-11 14:06:28,650 INFO  [com.fin.pta.ser.SettlementServices] (main) Request recieved  for p2m settlement {"batchId":"batch2","appId":"APPPTA","userClass":"ptauser","executeAt":null,"previousExecutionTime":null,"apiExecutionMode":false,"settlementOfTheDay":"1"} at 2023-12-11T14:06:28.650011 
+Hibernate: 
+    select
+        settlement0_.id as id1_2_,
+        settlement0_.batch_id as batch_id2_2_,
+        settlement0_.date_started as date_sta3_2_,
+        settlement0_.failed_count as failed_c4_2_,
+        settlement0_.file_name as file_nam5_2_,
+        settlement0_.isEod as iseod6_2_,
+        settlement0_.is_running as is_runni7_2_,
+        settlement0_.last_updated as last_upd8_2_,
+        settlement0_.processing_status as processi9_2_,
+        settlement0_.records_count as records10_2_,
+        settlement0_.reject_count as reject_11_2_,
+        settlement0_.remarks as remarks12_2_,
+        settlement0_.date_responded as date_re13_2_,
+        settlement0_.result_file_name as result_14_2_,
+        settlement0_.settlement_id as settlem15_2_,
+        settlement0_.is_api_mode as is_api_16_2_,
+        settlement0_.success_count as success17_2_ 
+    from
+        settlement_audit settlement0_ 
+    where
+        settlement0_.batch_id=? 
+        and settlement0_.is_running=true
+2023-12-11 14:06:29,179 INFO  [com.fin.pta.rep.log.SettlementAuditRepository] (main) No parallel running batch for batchId batch2
+2023-12-11 14:06:29,195 INFO  [com.fin.pta.rep.log.SettlementAuditRepository] (main) Starting settlement for batchId batch2 at Mon Dec 11 14:06:28 IST 2023
+Hibernate: 
+    call next value for settlement_audit_seq
+Hibernate: 
+    insert 
+    into
+        settlement_audit
+        (batch_id, date_started, failed_count, file_name, isEod, is_running, last_updated, processing_status, records_count, reject_count, remarks, date_responded, result_file_name, settlement_id, is_api_mode, success_count, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2023-12-11 14:06:29,379 WARN  [io.qua.ope.run.exp.otl.LateBoundBatchSpanProcessor] (main) No BatchSpanProcessor delegate specified, no action taken.
+2023-12-11 14:06:29,536 WARN  [org.apa.cam.com.fil.rem.RemoteFileConsumer] (Camel (camel-1) thread #1 - sftp://sftp_user@localhost:8007/uploads/Settlement/IFT_Response) Cannot connect/login to: sftp://sftp_user@localhost:8007. Will skip this poll.
+2023-12-11 14:06:29,609 INFO  [com.fin.pta.ser.fin.FinoSettlement] (main) Settlement Batch Received from Rule Engine {"batchId":"batch2","partnerSettlementRules":[{"partnerId":"partner2","ptaPartnerGl":"88333555210","ptaIntermediaryGl":"20000000002","ptaPurchaseGl":"20000000005","cbsPartnerGl":"88333555210","cbsIntermediaryGl":"20000000002","cbsPurchaseGl":"20000000005","costCenter":"9001","ptaTranType":"PTANREOD","cbsTranType":"PTANREOD","thresholdAmt":"10","thresholdTime":"15"},{"partnerId":"partner3","ptaPartnerGl":"88333555211","ptaIntermediaryGl":"20000000002","ptaPurchaseGl":"20000000005","cbsPartnerGl":"88333555211","cbsIntermediaryGl":"20000000002","cbsPurchaseGl":"20000000005","costCenter":"9001","ptaTranType":"PTANREOD","cbsTranType":"PTANREOD","thresholdAmt":"5","thresholdTime":"5"},{"partnerId":"partner2","ptaPartnerGl":"88333555210","ptaIntermediaryGl":"20000000002","ptaPurchaseGl":"20000000005","cbsPartnerGl":"88333555210","cbsIntermediaryGl":"20000000002","cbsPurchaseGl":"20000000005","costCenter":"9001","ptaTranType":"PTANREOD","cbsTranType":"PTANREOD","thresholdAmt":"10","thresholdTime":"15"},{"partnerId":"partner3","ptaPartnerGl":"88333555211","ptaIntermediaryGl":"20000000002","ptaPurchaseGl":"20000000005","cbsPartnerGl":"88333555211","cbsIntermediaryGl":"20000000002","cbsPurchaseGl":"20000000005","costCenter":"9001","ptaTranType":"PTANREOD","cbsTranType":"PTANREOD","thresholdAmt":"5","thresholdTime":"5"}]} .
+2023-12-11 14:06:29,610 INFO  [com.fin.pta.rep.log.SettlementAuditRepository] (main) updating status of batch2 to P2M_POSTING_RUNNING
+Hibernate: 
+    update
+        settlement_audit 
+    set
+        processing_status='P2M_POSTING_RUNNING',
+        last_updated=NOW() 
+    where
+        batch_id='batch2' 
+        and settlement_id='1' 
+        and is_running=true
+2023-12-11 14:06:29,648 INFO  [com.fin.pta.ser.fin.FinoSettlement] (main) Running settlement for partner : partner2 with partnerGl : 88333555210 
+Hibernate: 
+    with trandetails as (select
+        txn_reference_no,
+        posting_amount,
+        created_at,
+        case 
+            when dr_gl_account = '88333555210' then -posting_amount 
+            when cr_gl_account = '88333555210' then posting_amount 
+        end as amount,
+        coalesce(lag (case 
+            when dr_gl_account = '88333555210' then -posting_amount 
+            when cr_gl_account = '88333555210' then posting_amount 
+        end) over(
+    order by
+        created_at),
+        0.00) balance 
+    from
+        transaction_leg_amt 
+    where
+        (dr_gl_account = '88333555210' 
+        or cr_gl_account = '88333555210') 
+        and (created_at < NOW()) 
+        and is_settled_at_p2m=false 
+        and transaction_type !='PTNREOD' 
+        and transaction_type !='PTASTLMT'), sumdetails as (select
+        txn_reference_no,
+        created_at,
+        amount,
+        sum(amount) over (
+    order by
+        created_at) balance 
+    from
+        trandetails), balanceamt as (select
+        balance as nett 
+    from
+        sumdetails  
+    order by
+        created_at desc limit 1), settle_results as (select
+        sumdetails.txn_reference_no,
+        sumdetails.created_at,
+        sumdetails.amount,
+        sumdetails.balance,
+        balanceamt.nett,
+        balanceamt.nett-10  as threshold,
+        (balanceamt.nett-10)-sumdetails.balance as settle_amt,
+        case 
+            when (balanceamt.nett-10)-sumdetails.balance >= 0 then true 
+            else false 
+        end as tosettle  
+    from
+        sumdetails,
+        balanceamt 
+    order by
+        created_at desc) select
+        txn_reference_no,
+        created_at,
+        amount,
+        tosettle 
+    from
+        settle_results 
+    where
+        tosettle=true
+2023-12-11 14:06:29,944 ERROR [com.fin.pta.ser.SettlementTransactions] (main) No transaction to settle for partnerGl 88333555210.
+2023-12-11 14:06:29,944 INFO  [com.fin.pta.ser.SettlementTransactions] (main) Amount to settle : 0
+2023-12-11 14:06:29,946 ERROR [com.fin.pta.ser.fin.FinoSettlement] (main) Response from settlementTransactions SettlementResponse(responseCode=1, responseMessage=No transaction to Settle).
+2023-12-11 14:06:29,947 INFO  [com.fin.pta.ser.fin.FinoSettlement] (main) Running settlement for partner : partner3 with partnerGl : 88333555211 
+Hibernate: 
+    with trandetails as (select
+        txn_reference_no,
+        posting_amount,
+        created_at,
+        case 
+            when dr_gl_account = '88333555211' then -posting_amount 
+            when cr_gl_account = '88333555211' then posting_amount 
+        end as amount,
+        coalesce(lag (case 
+            when dr_gl_account = '88333555211' then -posting_amount 
+            when cr_gl_account = '88333555211' then posting_amount 
+        end) over(
+    order by
+        created_at),
+        0.00) balance 
+    from
+        transaction_leg_amt 
+    where
+        (dr_gl_account = '88333555211' 
+        or cr_gl_account = '88333555211') 
+        and (created_at < NOW()) 
+        and is_settled_at_p2m=false 
+        and transaction_type !='PTNREOD' 
+        and transaction_type !='PTASTLMT'), sumdetails as (select
+        txn_reference_no,
+        created_at,
+        amount,
+        sum(amount) over (
+    order by
+        created_at) balance 
+    from
+        trandetails), balanceamt as (select
+        balance as nett 
+    from
+        sumdetails  
+    order by
+        created_at desc limit 1), settle_results as (select
+        sumdetails.txn_reference_no,
+        sumdetails.created_at,
+        sumdetails.amount,
+        sumdetails.balance,
+        balanceamt.nett,
+        balanceamt.nett-5  as threshold,
+        (balanceamt.nett-5)-sumdetails.balance as settle_amt,
+        case 
+            when (balanceamt.nett-5)-sumdetails.balance >= 0 then true 
+            else false 
+        end as tosettle  
+    from
+        sumdetails,
+        balanceamt 
+    order by
+        created_at desc) select
+        txn_reference_no,
+        created_at,
+        amount,
+        tosettle 
+    from
+        settle_results 
+    where
+        tosettle=true
+2023-12-11 14:06:30,175 INFO  [com.fin.pta.ser.SettlementTransactions] (main) Running settlement for 3 transactions in partnerGl 88333555211.
+2023-12-11 14:06:30,175 INFO  [com.fin.pta.ser.SettlementTransactions] (main) Amount to settle : 30.00
+2023-12-11 14:06:30,190 INFO  [com.fin.pta.ser.TransactionUtils] (main) Creating Transaction Request for P2M.
+2023-12-11 14:06:30,493 INFO  [com.fin.pta.ser.TransactionUtils] (main) Requesting transaction with payload TransactionRequest(uniqueTransactionId=P-0-11111111111, userClass=ptauser, transCategory=PTNREOD, appId=APPPTA, iftFileId=null, referenceNo=11111111111, reversalFlag=F, chargeOverride=null, analysisFlag=null, isClubbed=null, isInclusive=null, valueDate=null, initiatingBranchCode=null, userId=null, partnerId=null, merchantsId=null, acctFundTransferLegs=[FundTransferLegRequest(postingPair=1, creditDebitFlag=C, transactionType=PTNREOD, trantype=null, postingAmount=30.00, accountNumber=20000000002, amount=30.00, currency=INR, transactionComment=null, costCentre=null, supportData=null, transferLegsSupportData=null, beneficiaryRefOrMmid=null, beneficiaryMobile=null, remitterMobile=null, remitterMmid=null, beneficiaryAccountNo=null, beneficiaryIfsc=null, remarks=null, restricted=false, restrictionId=null, restrictionString=null, productId=0, transactionAllowed=true, legId=1, isAccount=false), FundTransferLegRequest(postingPair=1, creditDebitFlag=D, transactionType=PTNREOD, trantype=null, postingAmount=30.00, accountNumber=88333555211, amount=30.00, currency=INR, transactionComment=null, costCentre=null, supportData=null, transferLegsSupportData=null, beneficiaryRefOrMmid=null, beneficiaryMobile=null, remitterMobile=null, remitterMmid=null, beneficiaryAccountNo=null, beneficiaryIfsc=null, remarks=null, restricted=false, restrictionId=null, restrictionString=null, productId=0, transactionAllowed=true, legId=2, isAccount=false), FundTransferLegRequest(postingPair=2, creditDebitFlag=D, transactionType=PTNREOD, trantype=null, postingAmount=30.00, accountNumber=20000000002, amount=30.00, currency=INR, transactionComment=null, costCentre=null, supportData=null, transferLegsSupportData=null, beneficiaryRefOrMmid=null, beneficiaryMobile=null, remitterMobile=null, remitterMmid=null, beneficiaryAccountNo=null, beneficiaryIfsc=null, remarks=null, restricted=false, restrictionId=null, restrictionString=null, productId=0, transactionAllowed=true, legId=3, isAccount=false), FundTransferLegRequest(postingPair=2, creditDebitFlag=C, transactionType=PTNREOD, trantype=null, postingAmount=30.00, accountNumber=20000000005, amount=30.00, currency=INR, transactionComment=null, costCentre=null, supportData=null, transferLegsSupportData=null, beneficiaryRefOrMmid=null, beneficiaryMobile=null, remitterMobile=null, remitterMmid=null, beneficiaryAccountNo=null, beneficiaryIfsc=null, remarks=null, restricted=false, restrictionId=null, restrictionString=null, productId=0, transactionAllowed=true, legId=4, isAccount=false)]).
+2023-12-11 14:06:30,579 INFO  [com.fin.pta.ser.TransactionUtils] (main) Response from transaction org.jboss.resteasy.specimpl.AbstractBuiltResponse$InputStreamWrapper@72ed4e67
+Hibernate: 
+    select
+        transactio0_.id as id1_3_,
+        transactio0_.is_settled_at_p2m as is_settl2_3_,
+        transactio0_.isEod as iseod3_3_,
+        transactio0_.created_at as created_4_3_,
+        transactio0_.cr_gl_account as cr_gl_ac5_3_,
+        transactio0_.cr_gl_available_balance_amount as cr_gl_av6_3_,
+        transactio0_.cr_gl_account_balance_amount as cr_gl_ac7_3_,
+        transactio0_.dr_gl_account as dr_gl_ac8_3_,
+        transactio0_.dr_gl_available_balance_amount as dr_gl_av9_3_,
+        transactio0_.dr_gl_account_balance_amount as dr_gl_a10_3_,
+        transactio0_.is_charge as is_char11_3_,
+        transactio0_.is_credit_account as is_cred12_3_,
+        transactio0_.is_debit_account as is_debi13_3_,
+        transactio0_.is_tax as is_tax14_3_,
+        transactio0_.posting_amount as posting15_3_,
+        transactio0_.posting_pair as posting16_3_,
+        transactio0_.posting_sequence as posting17_3_,
+        transactio0_.pta_trans_seq_no as pta_tra18_3_,
+        transactio0_.txn_reference_no as txn_ref19_3_,
+        transactio0_.reversed as reverse20_3_,
+        transactio0_.settled_at_p2m as settled21_3_,
+        transactio0_.settlement_id as settlem22_3_,
+        transactio0_.transaction_type as transac23_3_,
+        transactio0_.updated_at as updated24_3_,
+        transactio0_.value_date as value_d25_3_ 
+    from
+        transaction_leg_amt transactio0_ 
+    where
+        transactio0_.txn_reference_no=?
+2023-12-11 14:06:30,808 INFO  [com.fin.pta.ser.TransactionUtils] (main) adding transaction with CBSSettlementTable(id=null, ptaTransSeqNo=P-0-11111111111, referenceNo=11111111111, postingSequence=1, postingPair=1, isCharge=false, isTax=false, postingAmount=10.00, debitGlAccount=8212000102, debitGlAccountBalanceAmount=268.55, creditGlAccount=88333555211, creditGlAccountBalanceAmount=718.00, createdAt=2023-11-30 05:17:36.04, valueDate=2023-11-30 05:17:36.038, reversed=false, transactionType=UPIMPUR, isCreditAccount=false, isDebitAccount=false, debitGlAccountAvailableBalanceAmount=null, creditGlAccountAvailableBalanceAmount=null, settledAtCbs=false, settledTime=null, settlementId=null, cbs_reference_no=null, cbsResponse=null, isEod=false) in settlement table.
+Hibernate: 
+    call next value for cbs_settlement_table_seq
+Hibernate: 
+    insert 
+    into
+        cbs_settlement_table
+        (cbs_response, cbs_reference_no, created_at, cr_gl_account, cr_gl_available_balance_amount, cr_gl_account_balance_amount, dr_gl_account, dr_gl_available_balance_amount, dr_gl_account_balance_amount, is_charge, is_credit_account, is_debit_account, isEod, is_tax, posting_amount, posting_pair, posting_sequence, pta_trans_seq_no, txn_reference_no, reversed, is_settled_at_cbs, settled_at_cbs, settlement_id, transaction_type, value_date, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    update
+        transaction_leg_amt 
+    set
+        is_settled_at_p2m=true ,
+        settled_at_p2m=NOW() ,
+        settlement_id='1',
+        isEod='false' 
+    where
+        txn_reference_no in (
+            with trandetails as (select
+                txn_reference_no,
+                posting_amount,
+                created_at,
+                case 
+                    when dr_gl_account = '88333555211' then -posting_amount 
+                    when cr_gl_account = '88333555211' then posting_amount 
+                end as amount,
+                coalesce(lag (case 
+                    when dr_gl_account = '88333555211' then -posting_amount 
+                    when cr_gl_account = '88333555211' then posting_amount 
+                end) over(
+            order by
+                created_at),
+                0.00) balance 
+            from
+                transaction_leg_amt 
+            where
+                (dr_gl_account = '88333555211' 
+                or cr_gl_account = '88333555211') 
+                and (created_at < NOW()) 
+                and is_settled_at_p2m=false 
+                and transaction_type !='PTNREOD' 
+                and transaction_type !='PTASTLMT'), sumdetails as (select
+                txn_reference_no,
+                created_at,
+                amount,
+                sum(amount) over (
+            order by
+                created_at) balance 
+            from
+                trandetails), balanceamt as (select
+                balance as nett 
+            from
+                sumdetails  
+            order by
+                created_at desc limit 1), settle_results as (select
+                sumdetails.txn_reference_no,
+                sumdetails.created_at,
+                sumdetails.amount,
+                sumdetails.balance,
+                balanceamt.nett,
+                balanceamt.nett-5  as threshold,
+                (balanceamt.nett-5)-sumdetails.balance as settle_amt,
+                case 
+                    when (balanceamt.nett-5)-sumdetails.balance >= 0 then true 
+                    else false 
+                end as tosettle  
+            from
+                sumdetails,
+                balanceamt 
+            order by
+                created_at desc) select
+                txn_reference_no 
+            from
+                settle_results 
+            where
+                tosettle=true
+        )
+2023-12-11 14:06:31,190 INFO  [com.fin.pta.ser.fin.FinoSettlement] (main) Running settlement for partner : partner2 with partnerGl : 88333555210 
+Hibernate: 
+    with trandetails as (select
+        txn_reference_no,
+        posting_amount,
+        created_at,
+        case 
+            when dr_gl_account = '88333555210' then -posting_amount 
+            when cr_gl_account = '88333555210' then posting_amount 
+        end as amount,
+        coalesce(lag (case 
+            when dr_gl_account = '88333555210' then -posting_amount 
+            when cr_gl_account = '88333555210' then posting_amount 
+        end) over(
+    order by
+        created_at),
+        0.00) balance 
+    from
+        transaction_leg_amt 
+    where
+        (dr_gl_account = '88333555210' 
+        or cr_gl_account = '88333555210') 
+        and (created_at < NOW()) 
+        and is_settled_at_p2m=false 
+        and transaction_type !='PTNREOD' 
+        and transaction_type !='PTASTLMT'), sumdetails as (select
+        txn_reference_no,
+        created_at,
+        amount,
+        sum(amount) over (
+    order by
+        created_at) balance 
+    from
+        trandetails), balanceamt as (select
+        balance as nett 
+    from
+        sumdetails  
+    order by
+        created_at desc limit 1), settle_results as (select
+        sumdetails.txn_reference_no,
+        sumdetails.created_at,
+        sumdetails.amount,
+        sumdetails.balance,
+        balanceamt.nett,
+        balanceamt.nett-10  as threshold,
+        (balanceamt.nett-10)-sumdetails.balance as settle_amt,
+        case 
+            when (balanceamt.nett-10)-sumdetails.balance >= 0 then true 
+            else false 
+        end as tosettle  
+    from
+        sumdetails,
+        balanceamt 
+    order by
+        created_at desc) select
+        txn_reference_no,
+        created_at,
+        amount,
+        tosettle 
+    from
+        settle_results 
+    where
+        tosettle=true
+2023-12-11 14:06:31,296 ERROR [com.fin.pta.ser.SettlementTransactions] (main) No transaction to settle for partnerGl 88333555210.
+2023-12-11 14:06:31,297 INFO  [com.fin.pta.ser.SettlementTransactions] (main) Amount to settle : 0
+2023-12-11 14:06:31,297 ERROR [com.fin.pta.ser.fin.FinoSettlement] (main) Response from settlementTransactions SettlementResponse(responseCode=1, responseMessage=No transaction to Settle).
+2023-12-11 14:06:31,298 INFO  [com.fin.pta.ser.fin.FinoSettlement] (main) Running settlement for partner : partner3 with partnerGl : 88333555211 
+Hibernate: 
+    with trandetails as (select
+        txn_reference_no,
+        posting_amount,
+        created_at,
+        case 
+            when dr_gl_account = '88333555211' then -posting_amount 
+            when cr_gl_account = '88333555211' then posting_amount 
+        end as amount,
+        coalesce(lag (case 
+            when dr_gl_account = '88333555211' then -posting_amount 
+            when cr_gl_account = '88333555211' then posting_amount 
+        end) over(
+    order by
+        created_at),
+        0.00) balance 
+    from
+        transaction_leg_amt 
+    where
+        (dr_gl_account = '88333555211' 
+        or cr_gl_account = '88333555211') 
+        and (created_at < NOW()) 
+        and is_settled_at_p2m=false 
+        and transaction_type !='PTNREOD' 
+        and transaction_type !='PTASTLMT'), sumdetails as (select
+        txn_reference_no,
+        created_at,
+        amount,
+        sum(amount) over (
+    order by
+        created_at) balance 
+    from
+        trandetails), balanceamt as (select
+        balance as nett 
+    from
+        sumdetails  
+    order by
+        created_at desc limit 1), settle_results as (select
+        sumdetails.txn_reference_no,
+        sumdetails.created_at,
+        sumdetails.amount,
+        sumdetails.balance,
+        balanceamt.nett,
+        balanceamt.nett-5  as threshold,
+        (balanceamt.nett-5)-sumdetails.balance as settle_amt,
+        case 
+            when (balanceamt.nett-5)-sumdetails.balance >= 0 then true 
+            else false 
+        end as tosettle  
+    from
+        sumdetails,
+        balanceamt 
+    order by
+        created_at desc) select
+        txn_reference_no,
+        created_at,
+        amount,
+        tosettle 
+    from
+        settle_results 
+    where
+        tosettle=true
+2023-12-11 14:06:31,400 ERROR [com.fin.pta.ser.SettlementTransactions] (main) No transaction to settle for partnerGl 88333555211.
+2023-12-11 14:06:31,400 INFO  [com.fin.pta.ser.SettlementTransactions] (main) Amount to settle : 0
+2023-12-11 14:06:31,400 ERROR [com.fin.pta.ser.fin.FinoSettlement] (main) Response from settlementTransactions SettlementResponse(responseCode=1, responseMessage=No transaction to Settle).
+2023-12-11 14:06:31,406 INFO  [com.fin.pta.rep.log.SettlementAuditRepository] (main) updating status of batch2 to P2M_POSTING_SUCCEEDED
+Hibernate: 
+    update
+        settlement_audit 
+    set
+        processing_status='P2M_POSTING_SUCCEEDED',
+        last_updated=NOW() 
+    where
+        batch_id='batch2' 
+        and settlement_id='1' 
+        and is_running=true
+2023-12-11 14:06:31,422 INFO  [com.fin.pta.ser.SettlementServices] (main) Request recieved  for cbs settlement {"batchId":"batch2","appId":"APPPTA","userClass":"ptauser","executeAt":null,"previousExecutionTime":null,"apiExecutionMode":false,"settlementOfTheDay":"1"} at 2023-12-11T14:06:31.422217 
+Hibernate: 
+    select
+        settlement0_.id as id1_2_,
+        settlement0_.batch_id as batch_id2_2_,
+        settlement0_.date_started as date_sta3_2_,
+        settlement0_.failed_count as failed_c4_2_,
+        settlement0_.file_name as file_nam5_2_,
+        settlement0_.isEod as iseod6_2_,
+        settlement0_.is_running as is_runni7_2_,
+        settlement0_.last_updated as last_upd8_2_,
+        settlement0_.processing_status as processi9_2_,
+        settlement0_.records_count as records10_2_,
+        settlement0_.reject_count as reject_11_2_,
+        settlement0_.remarks as remarks12_2_,
+        settlement0_.date_responded as date_re13_2_,
+        settlement0_.result_file_name as result_14_2_,
+        settlement0_.settlement_id as settlem15_2_,
+        settlement0_.is_api_mode as is_api_16_2_,
+        settlement0_.success_count as success17_2_ 
+    from
+        settlement_audit settlement0_ 
+    where
+        settlement0_.batch_id=? 
+        and settlement0_.is_running=true
+Hibernate: 
+    select
+        settlement0_.id as id1_2_,
+        settlement0_.batch_id as batch_id2_2_,
+        settlement0_.date_started as date_sta3_2_,
+        settlement0_.failed_count as failed_c4_2_,
+        settlement0_.file_name as file_nam5_2_,
+        settlement0_.isEod as iseod6_2_,
+        settlement0_.is_running as is_runni7_2_,
+        settlement0_.last_updated as last_upd8_2_,
+        settlement0_.processing_status as processi9_2_,
+        settlement0_.records_count as records10_2_,
+        settlement0_.reject_count as reject_11_2_,
+        settlement0_.remarks as remarks12_2_,
+        settlement0_.date_responded as date_re13_2_,
+        settlement0_.result_file_name as result_14_2_,
+        settlement0_.settlement_id as settlem15_2_,
+        settlement0_.is_api_mode as is_api_16_2_,
+        settlement0_.success_count as success17_2_ 
+    from
+        settlement_audit settlement0_ 
+    where
+        settlement0_.batch_id=? 
+        and settlement0_.is_running=true
+2023-12-11 14:06:31,497 INFO  [com.fin.pta.rep.log.SettlementAuditRepository] (main) Already running batch for batchId batch2. current status is P2M_POSTING_SUCCEEDED
+2023-12-11 14:06:31,497 INFO  [com.fin.pta.rep.log.SettlementAuditRepository] (main) updating status of batch2 to CBS_SETTLEMENT_STARTED
+Hibernate: 
+    update
+        settlement_audit 
+    set
+        processing_status='CBS_SETTLEMENT_STARTED',
+        last_updated=NOW() 
+    where
+        batch_id='batch2' 
+        and settlement_id='1' 
+        and is_running=true
+2023-12-11 14:06:31,533 INFO  [com.fin.pta.rep.log.SettlementAuditRepository] (main) updating status of batch2 to IFT_FILE_GENERATION_RUNNING
+Hibernate: 
+    update
+        settlement_audit 
+    set
+        processing_status='IFT_FILE_GENERATION_RUNNING',
+        last_updated=NOW() 
+    where
+        batch_id='batch2' 
+        and settlement_id='1' 
+        and is_running=true
+Hibernate: 
+    select
+        cbssettlem0_.id as id1_0_,
+        cbssettlem0_.cbs_response as cbs_resp2_0_,
+        cbssettlem0_.cbs_reference_no as cbs_refe3_0_,
+        cbssettlem0_.created_at as created_4_0_,
+        cbssettlem0_.cr_gl_account as cr_gl_ac5_0_,
+        cbssettlem0_.cr_gl_available_balance_amount as cr_gl_av6_0_,
+        cbssettlem0_.cr_gl_account_balance_amount as cr_gl_ac7_0_,
+        cbssettlem0_.dr_gl_account as dr_gl_ac8_0_,
+        cbssettlem0_.dr_gl_available_balance_amount as dr_gl_av9_0_,
+        cbssettlem0_.dr_gl_account_balance_amount as dr_gl_a10_0_,
+        cbssettlem0_.is_charge as is_char11_0_,
+        cbssettlem0_.is_credit_account as is_cred12_0_,
+        cbssettlem0_.is_debit_account as is_debi13_0_,
+        cbssettlem0_.isEod as iseod14_0_,
+        cbssettlem0_.is_tax as is_tax15_0_,
+        cbssettlem0_.posting_amount as posting16_0_,
+        cbssettlem0_.posting_pair as posting17_0_,
+        cbssettlem0_.posting_sequence as posting18_0_,
+        cbssettlem0_.pta_trans_seq_no as pta_tra19_0_,
+        cbssettlem0_.txn_reference_no as txn_ref20_0_,
+        cbssettlem0_.reversed as reverse21_0_,
+        cbssettlem0_.is_settled_at_cbs as is_sett22_0_,
+        cbssettlem0_.settled_at_cbs as settled23_0_,
+        cbssettlem0_.settlement_id as settlem24_0_,
+        cbssettlem0_.transaction_type as transac25_0_,
+        cbssettlem0_.value_date as value_d26_0_ 
+    from
+        cbs_settlement_table cbssettlem0_ 
+    where
+        cbssettlem0_.txn_reference_no in (
+            select
+                cbssettlem1_.txn_reference_no 
+            from
+                cbs_settlement_table cbssettlem1_ 
+            where
+                (
+                    cbssettlem1_.cr_gl_account=? 
+                    or cbssettlem1_.dr_gl_account=?
+                ) 
+                and cbssettlem1_.is_settled_at_cbs=false
+        ) 
+    order by
+        txn_reference_no asc,
+        posting_pair desc
+2023-12-11 14:06:31,581 ERROR [com.fin.pta.ser.fil.IFTFileGenerator] (main) No Unsettled Transaction for 88333555210
+Hibernate: 
+    select
+        cbssettlem0_.id as id1_0_,
+        cbssettlem0_.cbs_response as cbs_resp2_0_,
+        cbssettlem0_.cbs_reference_no as cbs_refe3_0_,
+        cbssettlem0_.created_at as created_4_0_,
+        cbssettlem0_.cr_gl_account as cr_gl_ac5_0_,
+        cbssettlem0_.cr_gl_available_balance_amount as cr_gl_av6_0_,
+        cbssettlem0_.cr_gl_account_balance_amount as cr_gl_ac7_0_,
+        cbssettlem0_.dr_gl_account as dr_gl_ac8_0_,
+        cbssettlem0_.dr_gl_available_balance_amount as dr_gl_av9_0_,
+        cbssettlem0_.dr_gl_account_balance_amount as dr_gl_a10_0_,
+        cbssettlem0_.is_charge as is_char11_0_,
+        cbssettlem0_.is_credit_account as is_cred12_0_,
+        cbssettlem0_.is_debit_account as is_debi13_0_,
+        cbssettlem0_.isEod as iseod14_0_,
+        cbssettlem0_.is_tax as is_tax15_0_,
+        cbssettlem0_.posting_amount as posting16_0_,
+        cbssettlem0_.posting_pair as posting17_0_,
+        cbssettlem0_.posting_sequence as posting18_0_,
+        cbssettlem0_.pta_trans_seq_no as pta_tra19_0_,
+        cbssettlem0_.txn_reference_no as txn_ref20_0_,
+        cbssettlem0_.reversed as reverse21_0_,
+        cbssettlem0_.is_settled_at_cbs as is_sett22_0_,
+        cbssettlem0_.settled_at_cbs as settled23_0_,
+        cbssettlem0_.settlement_id as settlem24_0_,
+        cbssettlem0_.transaction_type as transac25_0_,
+        cbssettlem0_.value_date as value_d26_0_ 
+    from
+        cbs_settlement_table cbssettlem0_ 
+    where
+        cbssettlem0_.txn_reference_no in (
+            select
+                cbssettlem1_.txn_reference_no 
+            from
+                cbs_settlement_table cbssettlem1_ 
+            where
+                (
+                    cbssettlem1_.cr_gl_account=? 
+                    or cbssettlem1_.dr_gl_account=?
+                ) 
+                and cbssettlem1_.is_settled_at_cbs=false
+        ) 
+    order by
+        txn_reference_no asc,
+        posting_pair desc
+2023-12-11 14:06:31,623 INFO  [com.fin.pta.ser.fil.IFTFileGenerator] (main) Adding new row :: 9001|88333555211|8212000102|10.00|SETTLEMENT1/11111111111-1/8212000102/11122023|SETTLEMENT1/11111111111-1/88333555211/11122023|MDR|MCR|ZRFUT8#11111111111-1~TCMT#SETTLEMENT1/UPIMPUR/11111111111-1/11122023|ZRFUT8#11111111111-1~TCMT#SETTLEMENT1/UPIMPUR/11111111111-1/11122023|9001|
+Hibernate: 
+    select
+        cbssettlem0_.id as id1_0_,
+        cbssettlem0_.cbs_response as cbs_resp2_0_,
+        cbssettlem0_.cbs_reference_no as cbs_refe3_0_,
+        cbssettlem0_.created_at as created_4_0_,
+        cbssettlem0_.cr_gl_account as cr_gl_ac5_0_,
+        cbssettlem0_.cr_gl_available_balance_amount as cr_gl_av6_0_,
+        cbssettlem0_.cr_gl_account_balance_amount as cr_gl_ac7_0_,
+        cbssettlem0_.dr_gl_account as dr_gl_ac8_0_,
+        cbssettlem0_.dr_gl_available_balance_amount as dr_gl_av9_0_,
+        cbssettlem0_.dr_gl_account_balance_amount as dr_gl_a10_0_,
+        cbssettlem0_.is_charge as is_char11_0_,
+        cbssettlem0_.is_credit_account as is_cred12_0_,
+        cbssettlem0_.is_debit_account as is_debi13_0_,
+        cbssettlem0_.isEod as iseod14_0_,
+        cbssettlem0_.is_tax as is_tax15_0_,
+        cbssettlem0_.posting_amount as posting16_0_,
+        cbssettlem0_.posting_pair as posting17_0_,
+        cbssettlem0_.posting_sequence as posting18_0_,
+        cbssettlem0_.pta_trans_seq_no as pta_tra19_0_,
+        cbssettlem0_.txn_reference_no as txn_ref20_0_,
+        cbssettlem0_.reversed as reverse21_0_,
+        cbssettlem0_.is_settled_at_cbs as is_sett22_0_,
+        cbssettlem0_.settled_at_cbs as settled23_0_,
+        cbssettlem0_.settlement_id as settlem24_0_,
+        cbssettlem0_.transaction_type as transac25_0_,
+        cbssettlem0_.value_date as value_d26_0_ 
+    from
+        cbs_settlement_table cbssettlem0_ 
+    where
+        cbssettlem0_.txn_reference_no in (
+            select
+                cbssettlem1_.txn_reference_no 
+            from
+                cbs_settlement_table cbssettlem1_ 
+            where
+                (
+                    cbssettlem1_.cr_gl_account=? 
+                    or cbssettlem1_.dr_gl_account=?
+                ) 
+                and cbssettlem1_.is_settled_at_cbs=false
+        ) 
+    order by
+        txn_reference_no asc,
+        posting_pair desc
+2023-12-11 14:06:31,627 ERROR [com.fin.pta.ser.fil.IFTFileGenerator] (main) No Unsettled Transaction for 88333555210
+Hibernate: 
+    select
+        cbssettlem0_.id as id1_0_,
+        cbssettlem0_.cbs_response as cbs_resp2_0_,
+        cbssettlem0_.cbs_reference_no as cbs_refe3_0_,
+        cbssettlem0_.created_at as created_4_0_,
+        cbssettlem0_.cr_gl_account as cr_gl_ac5_0_,
+        cbssettlem0_.cr_gl_available_balance_amount as cr_gl_av6_0_,
+        cbssettlem0_.cr_gl_account_balance_amount as cr_gl_ac7_0_,
+        cbssettlem0_.dr_gl_account as dr_gl_ac8_0_,
+        cbssettlem0_.dr_gl_available_balance_amount as dr_gl_av9_0_,
+        cbssettlem0_.dr_gl_account_balance_amount as dr_gl_a10_0_,
+        cbssettlem0_.is_charge as is_char11_0_,
+        cbssettlem0_.is_credit_account as is_cred12_0_,
+        cbssettlem0_.is_debit_account as is_debi13_0_,
+        cbssettlem0_.isEod as iseod14_0_,
+        cbssettlem0_.is_tax as is_tax15_0_,
+        cbssettlem0_.posting_amount as posting16_0_,
+        cbssettlem0_.posting_pair as posting17_0_,
+        cbssettlem0_.posting_sequence as posting18_0_,
+        cbssettlem0_.pta_trans_seq_no as pta_tra19_0_,
+        cbssettlem0_.txn_reference_no as txn_ref20_0_,
+        cbssettlem0_.reversed as reverse21_0_,
+        cbssettlem0_.is_settled_at_cbs as is_sett22_0_,
+        cbssettlem0_.settled_at_cbs as settled23_0_,
+        cbssettlem0_.settlement_id as settlem24_0_,
+        cbssettlem0_.transaction_type as transac25_0_,
+        cbssettlem0_.value_date as value_d26_0_ 
+    from
+        cbs_settlement_table cbssettlem0_ 
+    where
+        cbssettlem0_.txn_reference_no in (
+            select
+                cbssettlem1_.txn_reference_no 
+            from
+                cbs_settlement_table cbssettlem1_ 
+            where
+                (
+                    cbssettlem1_.cr_gl_account=? 
+                    or cbssettlem1_.dr_gl_account=?
+                ) 
+                and cbssettlem1_.is_settled_at_cbs=false
+        ) 
+    order by
+        txn_reference_no asc,
+        posting_pair desc
+2023-12-11 14:06:31,636 INFO  [com.fin.pta.ser.fil.IFTFileGenerator] (main) Adding new row :: 9001|88333555211|8212000102|10.00|SETTLEMENT1/11111111111-1/8212000102/11122023|SETTLEMENT1/11111111111-1/88333555211/11122023|MDR|MCR|ZRFUT8#11111111111-1~TCMT#SETTLEMENT1/UPIMPUR/11111111111-1/11122023|ZRFUT8#11111111111-1~TCMT#SETTLEMENT1/UPIMPUR/11111111111-1/11122023|9001|
+2023-12-11 14:06:31,637 INFO  [com.fin.pta.ser.fil.IFTFileGenerator] (main) CorrelationId={}|Processor=SettlementIFTRecordProcessor|Method=getIftFileSerial|Message=Checking GL Settlement Bucket Exist?
+2023-12-11 14:06:31,686 ERROR [com.fin.pta.ser.fil.IFTFileGenerator] (main) Camel Processor=SettlementIFTRecordProcessor|Method=getIftFileSerial|Exception in checking bucket=
+Hibernate: 
+    select
+        count(*) as col_0_0_ 
+    from
+        settlement_audit settlement0_ 
+    where
+        TO_CHAR(settlement0_.date_started,'YYYY-MM-DD')=? 
+        and settlement0_.is_api_mode=false
+2023-12-11 14:06:31,716 INFO  [com.fin.pta.rep.log.SettlementAuditRepository] (main) Added file for batchId batch2 with update settlement_audit set file_name='IFT_P2M_PTASETTLE_11122023_batch2_002.csv' ,records_count=2 ,reject_count=0, processing_status='IFT_FILE_GENERATION_SUCCEEDED', last_updated=NOW(),remarks='IFT_FILE_GENERATION_SUCCEEDED' where batch_id='batch2' and settlement_id='1' and is_running=true.
+Hibernate: 
+    update
+        settlement_audit 
+    set
+        file_name='IFT_P2M_PTASETTLE_11122023_batch2_002.csv' ,
+        records_count=2 ,
+        reject_count=0,
+        processing_status='IFT_FILE_GENERATION_SUCCEEDED',
+        last_updated=NOW(),
+        remarks='IFT_FILE_GENERATION_SUCCEEDED' 
+    where
+        batch_id='batch2' 
+        and settlement_id='1' 
+        and is_running=true
+2023-12-11 14:06:31,748 INFO  [route1] (main) Route=UploadSettlementIFTRoute|Message=IFT processing result = 9001|88333555211|8212000102|10.00|SETTLEMENT1/11111111111-1/8212000102/11122023|SETTLEMENT1/11111111111-1/88333555211/11122023|MDR|MCR|ZRFUT8#11111111111-1~TCMT#SETTLEMENT1/UPIMPUR/11111111111-1/11122023|ZRFUT8#11111111111-1~TCMT#SETTLEMENT1/UPIMPUR/11111111111-1/11122023|9001|
+9001|88333555211|8212000102|10.00|SETTLEMENT1/11111111111-1/8212000102/11122023|SETTLEMENT1/11111111111-1/88333555211/11122023|MDR|MCR|ZRFUT8#11111111111-1~TCMT#SETTLEMENT1/UPIMPUR/11111111111-1/11122023|ZRFUT8#11111111111-1~TCMT#SETTLEMENT1/UPIMPUR/11111111111-1/11122023|9001|
+2023-12-11 14:06:31,749 INFO  [route1] (main) Route=UploadSettlementIFTRoute|Message=GL_MINIO_BUCKET  glsettlementproducer-11-12-2023
+2023-12-11 14:06:31,752 INFO  [route1] (main) Route=UploadSettlementIFTRoute|Message= GL_IFT_FILE_NAME IFT_P2M_PTASETTLE_11122023_batch2_002.csv 
+2023-12-11 14:06:31,752 INFO  [route1] (main) Route=UploadSettlementIFTRoute|Message= GL_IFT_FILE_MINIO_UPLOAD_RUNNING 
+2023-12-11 14:06:32,059 ERROR [route1] (main) Route=UploadSettlementIFTRoute|Message=Error -- Failed to resolve endpoint: minio://glsettlementproducer-11-12-2023?accessKey=xxxxxx&endpoint=localhost&proxyPort=9000&secretKey=xxxxxx due to: java.net.ConnectException: Failed to connect to localhost/127.0.0.1:9000
+2023-12-11 14:06:32,061 INFO  [route1] (main) Route=UploadSettlementIFTRoute|Message=IFT processing result = 9001|88333555211|8212000102|10.00|SETTLEMENT1/11111111111-1/8212000102/11122023|SETTLEMENT1/11111111111-1/88333555211/11122023|MDR|MCR|ZRFUT8#11111111111-1~TCMT#SETTLEMENT1/UPIMPUR/11111111111-1/11122023|ZRFUT8#11111111111-1~TCMT#SETTLEMENT1/UPIMPUR/11111111111-1/11122023|9001|
+9001|88333555211|8212000102|10.00|SETTLEMENT1/11111111111-1/8212000102/11122023|SETTLEMENT1/11111111111-1/88333555211/11122023|MDR|MCR|ZRFUT8#11111111111-1~TCMT#SETTLEMENT1/UPIMPUR/11111111111-1/11122023|ZRFUT8#11111111111-1~TCMT#SETTLEMENT1/UPIMPUR/11111111111-1/11122023|9001|
+2023-12-11 14:06:32,061 INFO  [route1] (main) Route=UploadSettlementIFTRoute|Message=Saving file to /tmp/Error/Settlement/glsettlementproducer-11-12-2023
+2023-12-11 14:06:32,080 ERROR [org.apa.cam.pro.err.DefaultErrorHandler] (main) Failed delivery for (MessageId: F30953C92DF4B7C-0000000000000000 on ExchangeId: F30953C92DF4B7C-0000000000000000). Exhausted after delivery attempt: 1 caught: org.apache.camel.ResolveEndpointFailedException: Failed to resolve endpoint: minio://glsettlementproducer-11-12-2023?accessKey=xxxxxx&endpoint=localhost&proxyPort=9000&secretKey=xxxxxx due to: java.net.ConnectException: Failed to connect to localhost/127.0.0.1:9000. Processed by failure processor: FatalFallbackErrorHandler[null]
+
+Message History (source location and message history is disabled)
+---------------------------------------------------------------------------------------------------------------------------------------
+Source                                   ID                             Processor                                          Elapsed (ms)
+                                         route1/route1                  from[direct://settlement-ift-processing-route]          9789298
+
+Stacktrace
+---------------------------------------------------------------------------------------------------------------------------------------: org.apache.camel.ResolveEndpointFailedException: Failed to resolve endpoint: minio://glsettlementproducer-11-12-2023?accessKey=xxxxxx&endpoint=localhost&proxyPort=9000&secretKey=xxxxxx due to: java.net.ConnectException: Failed to connect to localhost/127.0.0.1:9000
+	at org.apache.camel.impl.engine.AbstractCamelContext.doGetEndpoint(AbstractCamelContext.java:1008)
+	at org.apache.camel.impl.engine.AbstractCamelContext.getEndpoint(AbstractCamelContext.java:899)
+	at org.apache.camel.support.CamelContextHelper.getMandatoryEndpoint(CamelContextHelper.java:77)
+	at org.apache.camel.support.ExchangeHelper.resolveEndpoint(ExchangeHelper.java:115)
+	at org.apache.camel.support.ExchangeHelper.resolveEndpoint(ExchangeHelper.java:94)
+	at org.apache.camel.processor.SendDynamicProcessor.resolveEndpoint(SendDynamicProcessor.java:296)
+	at org.apache.camel.processor.SendDynamicProcessor.process(SendDynamicProcessor.java:157)
+	at org.apache.camel.processor.errorhandler.RedeliveryErrorHandler$RedeliveryTask.doRun(RedeliveryErrorHandler.java:818)
+	at org.apache.camel.processor.errorhandler.RedeliveryErrorHandler$RedeliveryTask.run(RedeliveryErrorHandler.java:726)
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.schedule(DefaultReactiveExecutor.java:181)
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor.scheduleMain(DefaultReactiveExecutor.java:59)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:165)
+	at org.apache.camel.impl.engine.CamelInternalProcessor.process(CamelInternalProcessor.java:392)
+	at org.apache.camel.component.direct.DirectProducer.process(DirectProducer.java:96)
+	at org.apache.camel.impl.engine.SharedCamelInternalProcessor.process(SharedCamelInternalProcessor.java:214)
+	at org.apache.camel.impl.engine.SharedCamelInternalProcessor$1.process(SharedCamelInternalProcessor.java:111)
+	at org.apache.camel.impl.engine.DefaultAsyncProcessorAwaitManager.process(DefaultAsyncProcessorAwaitManager.java:83)
+	at org.apache.camel.impl.engine.SharedCamelInternalProcessor.process(SharedCamelInternalProcessor.java:108)
+	at org.apache.camel.support.cache.DefaultProducerCache.send(DefaultProducerCache.java:199)
+	at org.apache.camel.impl.engine.DefaultProducerTemplate.send(DefaultProducerTemplate.java:176)
+	at org.apache.camel.impl.engine.DefaultProducerTemplate.send(DefaultProducerTemplate.java:172)
+	at org.apache.camel.impl.engine.DefaultProducerTemplate.send(DefaultProducerTemplate.java:143)
+	at org.apache.camel.impl.engine.DefaultProducerTemplate.sendBodyAndHeader(DefaultProducerTemplate.java:244)
+	at com.finobank.ptaplus.service.fileBasedSettlement.IFTFileGenerator.perform(IFTFileGenerator.java:162)
+	at com.finobank.ptaplus.service.fileBasedSettlement.IFTFileGenerator.runSettlement(IFTFileGenerator.java:107)
+	at com.finobank.ptaplus.service.fileBasedSettlement.IFTFileGenerator_ClientProxy.runSettlement(Unknown Source)
+	at com.finobank.ptaplus.service.CBSSettlementWrapper.initializeTransactions(CBSSettlementWrapper.java:92)
+	at com.finobank.ptaplus.service.CBSSettlementWrapper.performSettlement(CBSSettlementWrapper.java:61)
+	at com.finobank.ptaplus.service.CBSSettlementWrapper_ClientProxy.performSettlement(Unknown Source)
+	at com.finobank.ptaplus.service.SettlementServices.SettlementCbs(SettlementServices.java:105)
+	at com.finobank.ptaplus.service.SettlementServices_Subclass.SettlementCbs$$superforward1(Unknown Source)
+	at com.finobank.ptaplus.service.SettlementServices_Subclass$$function$$3.apply(Unknown Source)
+	at io.quarkus.arc.impl.AroundInvokeInvocationContext.proceed(AroundInvokeInvocationContext.java:54)
+	at io.quarkus.resteasy.runtime.QuarkusRestPathTemplateInterceptor.restMethodInvoke(QuarkusRestPathTemplateInterceptor.java:39)
+	at io.quarkus.resteasy.runtime.QuarkusRestPathTemplateInterceptor_Bean.intercept(Unknown Source)
+	at io.quarkus.arc.impl.InterceptorInvocation.invoke(InterceptorInvocation.java:42)
+	at io.quarkus.arc.impl.AroundInvokeInvocationContext.perform(AroundInvokeInvocationContext.java:41)
+	at io.quarkus.arc.impl.InvocationContexts.performAroundInvoke(InvocationContexts.java:33)
+	at com.finobank.ptaplus.service.SettlementServices_Subclass.SettlementCbs(Unknown Source)
+	at com.finobank.ptaplus.service.SettlementServices.SettlementP2mPay(SettlementServices.java:82)
+	at com.finobank.ptaplus.service.SettlementServices_Subclass.SettlementP2mPay$$superforward1(Unknown Source)
+	at com.finobank.ptaplus.service.SettlementServices_Subclass$$function$$4.apply(Unknown Source)
+	at io.quarkus.arc.impl.AroundInvokeInvocationContext.proceed(AroundInvokeInvocationContext.java:54)
+	at io.quarkus.resteasy.runtime.QuarkusRestPathTemplateInterceptor.restMethodInvoke(QuarkusRestPathTemplateInterceptor.java:39)
+	at io.quarkus.resteasy.runtime.QuarkusRestPathTemplateInterceptor_Bean.intercept(Unknown Source)
+	at io.quarkus.arc.impl.InterceptorInvocation.invoke(InterceptorInvocation.java:42)
+	at io.quarkus.arc.impl.AroundInvokeInvocationContext.perform(AroundInvokeInvocationContext.java:41)
+	at io.quarkus.arc.impl.InvocationContexts.performAroundInvoke(InvocationContexts.java:33)
+	at com.finobank.ptaplus.service.SettlementServices_Subclass.SettlementP2mPay(Unknown Source)
+	at com.finobank.ptaplus.fileTest.SettlementP2mPaySuccess5(fileTest.java:134)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at io.quarkus.test.junit.QuarkusTestExtension.runExtensionMethod(QuarkusTestExtension.java:1002)
+	at io.quarkus.test.junit.QuarkusTestExtension.interceptTestMethod(QuarkusTestExtension.java:816)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:217)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:147)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:127)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:90)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:55)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:102)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:54)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:86)
+	at org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:86)
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:55)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:223)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:175)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:139)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:456)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:169)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
+Caused by: org.apache.camel.RuntimeCamelException: java.net.ConnectException: Failed to connect to localhost/127.0.0.1:9000
+	at org.apache.camel.RuntimeCamelException.wrapRuntimeException(RuntimeCamelException.java:66)
+	at org.apache.camel.support.service.BaseService.doFail(BaseService.java:413)
+	at org.apache.camel.support.service.BaseService.fail(BaseService.java:342)
+	at org.apache.camel.support.service.BaseService.start(BaseService.java:132)
+	at org.apache.camel.support.service.ServiceHelper.startService(ServiceHelper.java:113)
+	at org.apache.camel.impl.engine.AbstractCamelContext.deferStartService(AbstractCamelContext.java:1726)
+	at org.apache.camel.impl.engine.AbstractCamelContext.deferStartService(AbstractCamelContext.java:1703)
+	at org.apache.camel.impl.engine.AbstractCamelContext.internalAddService(AbstractCamelContext.java:1605)
+	at org.apache.camel.impl.engine.AbstractCamelContext.addService(AbstractCamelContext.java:1543)
+	at org.apache.camel.impl.engine.AbstractCamelContext.addService(AbstractCamelContext.java:1538)
+	at org.apache.camel.impl.engine.AbstractCamelContext.addService(AbstractCamelContext.java:1533)
+	at org.apache.camel.impl.engine.AbstractCamelContext.doGetEndpoint(AbstractCamelContext.java:992)
+	... 122 more
+Caused by: java.net.ConnectException: Failed to connect to localhost/127.0.0.1:9000
+	at okhttp3.internal.connection.RealConnection.connectSocket(RealConnection.java:265)
+	at okhttp3.internal.connection.RealConnection.connect(RealConnection.java:183)
+	at okhttp3.internal.connection.ExchangeFinder.findConnection(ExchangeFinder.java:224)
+	at okhttp3.internal.connection.ExchangeFinder.findHealthyConnection(ExchangeFinder.java:108)
+	at okhttp3.internal.connection.ExchangeFinder.find(ExchangeFinder.java:88)
+	at okhttp3.internal.connection.Transmitter.newExchange(Transmitter.java:169)
+	at okhttp3.internal.connection.ConnectInterceptor.intercept(ConnectInterceptor.java:41)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:142)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:117)
+	at okhttp3.internal.cache.CacheInterceptor.intercept(CacheInterceptor.java:94)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:142)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:117)
+	at okhttp3.internal.http.BridgeInterceptor.intercept(BridgeInterceptor.java:93)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:142)
+	at okhttp3.internal.http.RetryAndFollowUpInterceptor.intercept(RetryAndFollowUpInterceptor.java:88)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:142)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:117)
+	at okhttp3.RealCall.getResponseWithInterceptorChain(RealCall.java:229)
+	at okhttp3.RealCall.execute(RealCall.java:81)
+	at io.minio.S3Base.execute(S3Base.java:529)
+	at io.minio.S3Base.getRegion(S3Base.java:691)
+	at io.minio.S3Base.execute(S3Base.java:464)
+	at io.minio.S3Base.executeHead(S3Base.java:725)
+	at io.minio.MinioClient.bucketExists(MinioClient.java:1135)
+	at org.apache.camel.component.minio.MinioEndpoint.bucketExists(MinioEndpoint.java:157)
+	at org.apache.camel.component.minio.MinioEndpoint.doStart(MinioEndpoint.java:88)
+	at org.apache.camel.support.service.BaseService.start(BaseService.java:119)
+	... 130 more
+Caused by: java.net.ConnectException: Connection refused (Connection refused)
+	at java.base/java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:412)
+	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:255)
+	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:237)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.base/java.net.Socket.connect(Socket.java:609)
+	at okhttp3.internal.platform.Platform.connectSocket(Platform.java:130)
+	at okhttp3.internal.connection.RealConnection.connectSocket(RealConnection.java:263)
+	... 156 more
+
+2023-12-11 14:06:32,086 ERROR [com.fin.pta.ser.fil.IFTFileGenerator] (main) Exception ::org.apache.camel.CamelExecutionException: Exception occurred during execution on the exchange: Exchange[F30953C92DF4B7C-0000000000000000]
+2023-12-11 14:06:32,089 INFO  [com.fin.pta.ser.SettlementServices] (main) Response from SettlementCbs :{"responseCode":"1","responseMessage":"IFT_FILE_GENERATION_FAILED"}
+2023-12-11 14:06:32,090 INFO  [com.fin.pta.ser.SettlementServices] (main) Response from settlementP2mPay :{"responseCode":"0","responseMessage":"1 partner settled at P2M."}
+2023-12-11 14:06:32,122 INFO  [com.fin.pta.ser.SettlementServices] (main) Request recieved  for p2m settlement {"batchId":"batch2","appId":"APPPTA","userClass":"ptauser","executeAt":null,"previousExecutionTime":null,"apiExecutionMode":true,"settlementOfTheDay":"1"} at 2023-12-11T14:06:32.122123 
+Hibernate: 
+    select
+        settlement0_.id as id1_2_,
+        settlement0_.batch_id as batch_id2_2_,
+        settlement0_.date_started as date_sta3_2_,
+        settlement0_.failed_count as failed_c4_2_,
+        settlement0_.file_name as file_nam5_2_,
+        settlement0_.isEod as iseod6_2_,
+        settlement0_.is_running as is_runni7_2_,
+        settlement0_.last_updated as last_upd8_2_,
+        settlement0_.processing_status as processi9_2_,
+        settlement0_.records_count as records10_2_,
+        settlement0_.reject_count as reject_11_2_,
+        settlement0_.remarks as remarks12_2_,
+        settlement0_.date_responded as date_re13_2_,
+        settlement0_.result_file_name as result_14_2_,
+        settlement0_.settlement_id as settlem15_2_,
+        settlement0_.is_api_mode as is_api_16_2_,
+        settlement0_.success_count as success17_2_ 
+    from
+        settlement_audit settlement0_ 
+    where
+        settlement0_.batch_id=? 
+        and settlement0_.is_running=true
+Hibernate: 
+    select
+        settlement0_.id as id1_2_,
+        settlement0_.batch_id as batch_id2_2_,
+        settlement0_.date_started as date_sta3_2_,
+        settlement0_.failed_count as failed_c4_2_,
+        settlement0_.file_name as file_nam5_2_,
+        settlement0_.isEod as iseod6_2_,
+        settlement0_.is_running as is_runni7_2_,
+        settlement0_.last_updated as last_upd8_2_,
+        settlement0_.processing_status as processi9_2_,
+        settlement0_.records_count as records10_2_,
+        settlement0_.reject_count as reject_11_2_,
+        settlement0_.remarks as remarks12_2_,
+        settlement0_.date_responded as date_re13_2_,
+        settlement0_.result_file_name as result_14_2_,
+        settlement0_.settlement_id as settlem15_2_,
+        settlement0_.is_api_mode as is_api_16_2_,
+        settlement0_.success_count as success17_2_ 
+    from
+        settlement_audit settlement0_ 
+    where
+        settlement0_.batch_id=? 
+        and settlement0_.is_running=true
+2023-12-11 14:06:32,130 INFO  [com.fin.pta.rep.log.SettlementAuditRepository] (main) Already running batch for batchId batch2. current status is IFT_FILE_GENERATION_SUCCEEDED
+2023-12-11 14:06:32,132 INFO  [com.fin.pta.ser.SettlementServices] (main) Request recieved  for cbs settlement {"batchId":"batch2","appId":"APPPTA","userClass":"ptauser","executeAt":null,"previousExecutionTime":null,"apiExecutionMode":true,"settlementOfTheDay":"1"} at 2023-12-11T14:06:32.132438 
+Hibernate: 
+    select
+        settlement0_.id as id1_2_,
+        settlement0_.batch_id as batch_id2_2_,
+        settlement0_.date_started as date_sta3_2_,
+        settlement0_.failed_count as failed_c4_2_,
+        settlement0_.file_name as file_nam5_2_,
+        settlement0_.isEod as iseod6_2_,
+        settlement0_.is_running as is_runni7_2_,
+        settlement0_.last_updated as last_upd8_2_,
+        settlement0_.processing_status as processi9_2_,
+        settlement0_.records_count as records10_2_,
+        settlement0_.reject_count as reject_11_2_,
+        settlement0_.remarks as remarks12_2_,
+        settlement0_.date_responded as date_re13_2_,
+        settlement0_.result_file_name as result_14_2_,
+        settlement0_.settlement_id as settlem15_2_,
+        settlement0_.is_api_mode as is_api_16_2_,
+        settlement0_.success_count as success17_2_ 
+    from
+        settlement_audit settlement0_ 
+    where
+        settlement0_.batch_id=? 
+        and settlement0_.is_running=true
+Hibernate: 
+    select
+        settlement0_.id as id1_2_,
+        settlement0_.batch_id as batch_id2_2_,
+        settlement0_.date_started as date_sta3_2_,
+        settlement0_.failed_count as failed_c4_2_,
+        settlement0_.file_name as file_nam5_2_,
+        settlement0_.isEod as iseod6_2_,
+        settlement0_.is_running as is_runni7_2_,
+        settlement0_.last_updated as last_upd8_2_,
+        settlement0_.processing_status as processi9_2_,
+        settlement0_.records_count as records10_2_,
+        settlement0_.reject_count as reject_11_2_,
+        settlement0_.remarks as remarks12_2_,
+        settlement0_.date_responded as date_re13_2_,
+        settlement0_.result_file_name as result_14_2_,
+        settlement0_.settlement_id as settlem15_2_,
+        settlement0_.is_api_mode as is_api_16_2_,
+        settlement0_.success_count as success17_2_ 
+    from
+        settlement_audit settlement0_ 
+    where
+        settlement0_.batch_id=? 
+        and settlement0_.is_running=true
+2023-12-11 14:06:32,137 INFO  [com.fin.pta.rep.log.SettlementAuditRepository] (main) Already running batch for batchId batch2. current status is IFT_FILE_GENERATION_SUCCEEDED
+2023-12-11 14:06:32,138 INFO  [com.fin.pta.rep.log.SettlementAuditRepository] (main) updating status of batch2 to CBS_SETTLEMENT_STARTED
+Hibernate: 
+    update
+        settlement_audit 
+    set
+        processing_status='CBS_SETTLEMENT_STARTED',
+        last_updated=NOW() 
+    where
+        batch_id='batch2' 
+        and settlement_id='1' 
+        and is_running=true
+2023-12-11 14:06:32,156 INFO  [com.fin.pta.ser.CBSSettlementWrapper] (main) Running settlement for partner : partner2 with partnerGl : 88333555210 
+Hibernate: 
+    select
+        cbssettlem0_.id as id1_0_,
+        cbssettlem0_.cbs_response as cbs_resp2_0_,
+        cbssettlem0_.cbs_reference_no as cbs_refe3_0_,
+        cbssettlem0_.created_at as created_4_0_,
+        cbssettlem0_.cr_gl_account as cr_gl_ac5_0_,
+        cbssettlem0_.cr_gl_available_balance_amount as cr_gl_av6_0_,
+        cbssettlem0_.cr_gl_account_balance_amount as cr_gl_ac7_0_,
+        cbssettlem0_.dr_gl_account as dr_gl_ac8_0_,
+        cbssettlem0_.dr_gl_available_balance_amount as dr_gl_av9_0_,
+        cbssettlem0_.dr_gl_account_balance_amount as dr_gl_a10_0_,
+        cbssettlem0_.is_charge as is_char11_0_,
+        cbssettlem0_.is_credit_account as is_cred12_0_,
+        cbssettlem0_.is_debit_account as is_debi13_0_,
+        cbssettlem0_.isEod as iseod14_0_,
+        cbssettlem0_.is_tax as is_tax15_0_,
+        cbssettlem0_.posting_amount as posting16_0_,
+        cbssettlem0_.posting_pair as posting17_0_,
+        cbssettlem0_.posting_sequence as posting18_0_,
+        cbssettlem0_.pta_trans_seq_no as pta_tra19_0_,
+        cbssettlem0_.txn_reference_no as txn_ref20_0_,
+        cbssettlem0_.reversed as reverse21_0_,
+        cbssettlem0_.is_settled_at_cbs as is_sett22_0_,
+        cbssettlem0_.settled_at_cbs as settled23_0_,
+        cbssettlem0_.settlement_id as settlem24_0_,
+        cbssettlem0_.transaction_type as transac25_0_,
+        cbssettlem0_.value_date as value_d26_0_ 
+    from
+        cbs_settlement_table cbssettlem0_ 
+    where
+        cbssettlem0_.txn_reference_no in (
+            select
+                cbssettlem1_.txn_reference_no 
+            from
+                cbs_settlement_table cbssettlem1_ 
+            where
+                (
+                    cbssettlem1_.cr_gl_account=? 
+                    or cbssettlem1_.dr_gl_account=?
+                ) 
+                and cbssettlem1_.is_settled_at_cbs=false
+        ) 
+    order by
+        txn_reference_no asc,
+        posting_pair desc
+2023-12-11 14:06:32,160 INFO  [com.fin.pta.ser.CBSSettlementWrapper] (main) CBS Settlement Tables : [] 
+2023-12-11 14:06:32,160 ERROR [com.fin.pta.ser.CBSSettlementWrapper] (main) No Unsettled Transaction for 88333555210
+2023-12-11 14:06:32,161 ERROR [com.fin.pta.ser.CBSSettlementWrapper] (main) Error occured During settlement of PartnerGL 88333555210 :: no transaction to settle.
+2023-12-11 14:06:32,161 INFO  [com.fin.pta.ser.CBSSettlementWrapper] (main) Running settlement for partner : partner3 with partnerGl : 88333555211 
+Hibernate: 
+    select
+        cbssettlem0_.id as id1_0_,
+        cbssettlem0_.cbs_response as cbs_resp2_0_,
+        cbssettlem0_.cbs_reference_no as cbs_refe3_0_,
+        cbssettlem0_.created_at as created_4_0_,
+        cbssettlem0_.cr_gl_account as cr_gl_ac5_0_,
+        cbssettlem0_.cr_gl_available_balance_amount as cr_gl_av6_0_,
+        cbssettlem0_.cr_gl_account_balance_amount as cr_gl_ac7_0_,
+        cbssettlem0_.dr_gl_account as dr_gl_ac8_0_,
+        cbssettlem0_.dr_gl_available_balance_amount as dr_gl_av9_0_,
+        cbssettlem0_.dr_gl_account_balance_amount as dr_gl_a10_0_,
+        cbssettlem0_.is_charge as is_char11_0_,
+        cbssettlem0_.is_credit_account as is_cred12_0_,
+        cbssettlem0_.is_debit_account as is_debi13_0_,
+        cbssettlem0_.isEod as iseod14_0_,
+        cbssettlem0_.is_tax as is_tax15_0_,
+        cbssettlem0_.posting_amount as posting16_0_,
+        cbssettlem0_.posting_pair as posting17_0_,
+        cbssettlem0_.posting_sequence as posting18_0_,
+        cbssettlem0_.pta_trans_seq_no as pta_tra19_0_,
+        cbssettlem0_.txn_reference_no as txn_ref20_0_,
+        cbssettlem0_.reversed as reverse21_0_,
+        cbssettlem0_.is_settled_at_cbs as is_sett22_0_,
+        cbssettlem0_.settled_at_cbs as settled23_0_,
+        cbssettlem0_.settlement_id as settlem24_0_,
+        cbssettlem0_.transaction_type as transac25_0_,
+        cbssettlem0_.value_date as value_d26_0_ 
+    from
+        cbs_settlement_table cbssettlem0_ 
+    where
+        cbssettlem0_.txn_reference_no in (
+            select
+                cbssettlem1_.txn_reference_no 
+            from
+                cbs_settlement_table cbssettlem1_ 
+            where
+                (
+                    cbssettlem1_.cr_gl_account=? 
+                    or cbssettlem1_.dr_gl_account=?
+                ) 
+                and cbssettlem1_.is_settled_at_cbs=false
+        ) 
+    order by
+        txn_reference_no asc,
+        posting_pair desc
+2023-12-11 14:06:32,164 INFO  [com.fin.pta.ser.CBSSettlementWrapper] (main) CBS Settlement Tables : [CBSSettlementTable(id=1, ptaTransSeqNo=P-0-11111111111, referenceNo=11111111111, postingSequence=1, postingPair=1, isCharge=false, isTax=false, postingAmount=10.00, debitGlAccount=8212000102, debitGlAccountBalanceAmount=268.55, creditGlAccount=88333555211, creditGlAccountBalanceAmount=718.00, createdAt=2023-11-30 05:17:36.04, valueDate=2023-11-30 05:17:36.038, reversed=false, transactionType=UPIMPUR, isCreditAccount=false, isDebitAccount=false, debitGlAccountAvailableBalanceAmount=null, creditGlAccountAvailableBalanceAmount=null, settledAtCbs=false, settledTime=null, settlementId=null, cbs_reference_no=null, cbsResponse=null, isEod=false)] 
+2023-12-11 14:06:32,179 INFO  [com.fin.pta.rep.log.SettlementAuditRepository] (main) updating status of batch2 to CBS_TRANSACTIONS_RUNNING
+Hibernate: 
+    update
+        settlement_audit 
+    set
+        processing_status='CBS_TRANSACTIONS_RUNNING',
+        last_updated=NOW() 
+    where
+        batch_id='batch2' 
+        and settlement_id='1' 
+        and is_running=true
+2023-12-11 14:06:32,183 ERROR [com.fin.pta.ser.api.CBSApiSettlement] (main) Odd unsettled Transactions
+2023-12-11 14:06:32,183 INFO  [com.fin.pta.ser.api.CBSApiSettlement] (main) 0 transaction to settle,1 has been skiped
+2023-12-11 14:06:32,184 INFO  [com.fin.pta.ser.api.CBSApiSettlement] (main) Running Settlement for 0 transactions
+2023-12-11 14:06:32,184 INFO  [com.fin.pta.ser.api.CBSApiSettlement] (main) No of requests for cbs settlement : 0
+2023-12-11 14:06:32,184 INFO  [com.fin.pta.ser.api.CBSApiSettlement] (main) Settlement at cbs Completed.
+2023-12-11 14:06:32,184 INFO  [com.fin.pta.rep.log.SettlementAuditRepository] (main) updating status of batch2 to SETTLEMENT
+Hibernate: 
+    update
+        settlement_audit 
+    set
+        processing_status='SETTLEMENT',
+        last_updated=NOW() 
+    where
+        batch_id='batch2' 
+        and settlement_id='1' 
+        and is_running=true
+2023-12-11 14:06:32,187 INFO  [com.fin.pta.ser.CBSSettlementWrapper] (main) Running settlement for partner : partner2 with partnerGl : 88333555210 
+Hibernate: 
+    select
+        cbssettlem0_.id as id1_0_,
+        cbssettlem0_.cbs_response as cbs_resp2_0_,
+        cbssettlem0_.cbs_reference_no as cbs_refe3_0_,
+        cbssettlem0_.created_at as created_4_0_,
+        cbssettlem0_.cr_gl_account as cr_gl_ac5_0_,
+        cbssettlem0_.cr_gl_available_balance_amount as cr_gl_av6_0_,
+        cbssettlem0_.cr_gl_account_balance_amount as cr_gl_ac7_0_,
+        cbssettlem0_.dr_gl_account as dr_gl_ac8_0_,
+        cbssettlem0_.dr_gl_available_balance_amount as dr_gl_av9_0_,
+        cbssettlem0_.dr_gl_account_balance_amount as dr_gl_a10_0_,
+        cbssettlem0_.is_charge as is_char11_0_,
+        cbssettlem0_.is_credit_account as is_cred12_0_,
+        cbssettlem0_.is_debit_account as is_debi13_0_,
+        cbssettlem0_.isEod as iseod14_0_,
+        cbssettlem0_.is_tax as is_tax15_0_,
+        cbssettlem0_.posting_amount as posting16_0_,
+        cbssettlem0_.posting_pair as posting17_0_,
+        cbssettlem0_.posting_sequence as posting18_0_,
+        cbssettlem0_.pta_trans_seq_no as pta_tra19_0_,
+        cbssettlem0_.txn_reference_no as txn_ref20_0_,
+        cbssettlem0_.reversed as reverse21_0_,
+        cbssettlem0_.is_settled_at_cbs as is_sett22_0_,
+        cbssettlem0_.settled_at_cbs as settled23_0_,
+        cbssettlem0_.settlement_id as settlem24_0_,
+        cbssettlem0_.transaction_type as transac25_0_,
+        cbssettlem0_.value_date as value_d26_0_ 
+    from
+        cbs_settlement_table cbssettlem0_ 
+    where
+        cbssettlem0_.txn_reference_no in (
+            select
+                cbssettlem1_.txn_reference_no 
+            from
+                cbs_settlement_table cbssettlem1_ 
+            where
+                (
+                    cbssettlem1_.cr_gl_account=? 
+                    or cbssettlem1_.dr_gl_account=?
+                ) 
+                and cbssettlem1_.is_settled_at_cbs=false
+        ) 
+    order by
+        txn_reference_no asc,
+        posting_pair desc
+2023-12-11 14:06:32,190 INFO  [com.fin.pta.ser.CBSSettlementWrapper] (main) CBS Settlement Tables : [] 
+2023-12-11 14:06:32,190 ERROR [com.fin.pta.ser.CBSSettlementWrapper] (main) No Unsettled Transaction for 88333555210
+2023-12-11 14:06:32,190 ERROR [com.fin.pta.ser.CBSSettlementWrapper] (main) Error occured During settlement of PartnerGL 88333555210 :: no transaction to settle.
+2023-12-11 14:06:32,191 INFO  [com.fin.pta.ser.CBSSettlementWrapper] (main) Running settlement for partner : partner3 with partnerGl : 88333555211 
+Hibernate: 
+    select
+        cbssettlem0_.id as id1_0_,
+        cbssettlem0_.cbs_response as cbs_resp2_0_,
+        cbssettlem0_.cbs_reference_no as cbs_refe3_0_,
+        cbssettlem0_.created_at as created_4_0_,
+        cbssettlem0_.cr_gl_account as cr_gl_ac5_0_,
+        cbssettlem0_.cr_gl_available_balance_amount as cr_gl_av6_0_,
+        cbssettlem0_.cr_gl_account_balance_amount as cr_gl_ac7_0_,
+        cbssettlem0_.dr_gl_account as dr_gl_ac8_0_,
+        cbssettlem0_.dr_gl_available_balance_amount as dr_gl_av9_0_,
+        cbssettlem0_.dr_gl_account_balance_amount as dr_gl_a10_0_,
+        cbssettlem0_.is_charge as is_char11_0_,
+        cbssettlem0_.is_credit_account as is_cred12_0_,
+        cbssettlem0_.is_debit_account as is_debi13_0_,
+        cbssettlem0_.isEod as iseod14_0_,
+        cbssettlem0_.is_tax as is_tax15_0_,
+        cbssettlem0_.posting_amount as posting16_0_,
+        cbssettlem0_.posting_pair as posting17_0_,
+        cbssettlem0_.posting_sequence as posting18_0_,
+        cbssettlem0_.pta_trans_seq_no as pta_tra19_0_,
+        cbssettlem0_.txn_reference_no as txn_ref20_0_,
+        cbssettlem0_.reversed as reverse21_0_,
+        cbssettlem0_.is_settled_at_cbs as is_sett22_0_,
+        cbssettlem0_.settled_at_cbs as settled23_0_,
+        cbssettlem0_.settlement_id as settlem24_0_,
+        cbssettlem0_.transaction_type as transac25_0_,
+        cbssettlem0_.value_date as value_d26_0_ 
+    from
+        cbs_settlement_table cbssettlem0_ 
+    where
+        cbssettlem0_.txn_reference_no in (
+            select
+                cbssettlem1_.txn_reference_no 
+            from
+                cbs_settlement_table cbssettlem1_ 
+            where
+                (
+                    cbssettlem1_.cr_gl_account=? 
+                    or cbssettlem1_.dr_gl_account=?
+                ) 
+                and cbssettlem1_.is_settled_at_cbs=false
+        ) 
+    order by
+        txn_reference_no asc,
+        posting_pair desc
+2023-12-11 14:06:32,193 INFO  [com.fin.pta.ser.CBSSettlementWrapper] (main) CBS Settlement Tables : [CBSSettlementTable(id=1, ptaTransSeqNo=P-0-11111111111, referenceNo=11111111111, postingSequence=1, postingPair=1, isCharge=false, isTax=false, postingAmount=10.00, debitGlAccount=8212000102, debitGlAccountBalanceAmount=268.55, creditGlAccount=88333555211, creditGlAccountBalanceAmount=718.00, createdAt=2023-11-30 05:17:36.04, valueDate=2023-11-30 05:17:36.038, reversed=false, transactionType=UPIMPUR, isCreditAccount=false, isDebitAccount=false, debitGlAccountAvailableBalanceAmount=null, creditGlAccountAvailableBalanceAmount=null, settledAtCbs=false, settledTime=null, settlementId=null, cbs_reference_no=null, cbsResponse=null, isEod=false)] 
+2023-12-11 14:06:32,194 INFO  [com.fin.pta.rep.log.SettlementAuditRepository] (main) updating status of batch2 to CBS_TRANSACTIONS_RUNNING
+Hibernate: 
+    update
+        settlement_audit 
+    set
+        processing_status='CBS_TRANSACTIONS_RUNNING',
+        last_updated=NOW() 
+    where
+        batch_id='batch2' 
+        and settlement_id='1' 
+        and is_running=true
+2023-12-11 14:06:32,197 ERROR [com.fin.pta.ser.api.CBSApiSettlement] (main) Odd unsettled Transactions
+2023-12-11 14:06:32,197 INFO  [com.fin.pta.ser.api.CBSApiSettlement] (main) 0 transaction to settle,1 has been skiped
+2023-12-11 14:06:32,197 INFO  [com.fin.pta.ser.api.CBSApiSettlement] (main) Running Settlement for 0 transactions
+2023-12-11 14:06:32,198 INFO  [com.fin.pta.ser.api.CBSApiSettlement] (main) No of requests for cbs settlement : 0
+2023-12-11 14:06:32,198 INFO  [com.fin.pta.ser.api.CBSApiSettlement] (main) Settlement at cbs Completed.
+2023-12-11 14:06:32,198 INFO  [com.fin.pta.rep.log.SettlementAuditRepository] (main) updating status of batch2 to SETTLEMENT
+Hibernate: 
+    update
+        settlement_audit 
+    set
+        processing_status='SETTLEMENT',
+        last_updated=NOW() 
+    where
+        batch_id='batch2' 
+        and settlement_id='1' 
+        and is_running=true
+2023-12-11 14:06:32,204 INFO  [com.fin.pta.rep.log.SettlementAuditRepository] (main) Batch batch2 settled with ::update settlement_audit set is_running=false,records_count=4 ,success_count=2,failed_count=0,reject_count=2 ,date_responded=NOW(), processing_status='SETTLEMENT', last_updated=NOW(),remarks='P2M_POSTING_SUCCEEDED' where batch_id='batch2' and settlement_id='1' and is_running=true.
+Hibernate: 
+    update
+        settlement_audit 
+    set
+        is_running=false,
+        records_count=4 ,
+        success_count=2,
+        failed_count=0,
+        reject_count=2 ,
+        date_responded=NOW(),
+        processing_status='SETTLEMENT',
+        last_updated=NOW(),
+        remarks='P2M_POSTING_SUCCEEDED' 
+    where
+        batch_id='batch2' 
+        and settlement_id='1' 
+        and is_running=true
+2023-12-11 14:06:32,209 INFO  [com.fin.pta.ser.SettlementServices] (main) Response from SettlementCbs :{"responseCode":"0","responseMessage":"2 partner settled at CBS."}
+2023-12-11 14:06:32,211 INFO  [com.fin.pta.ser.SettlementServices] (main) Response from settlementP2mPay :{"responseCode":"1","responseMessage":"Batch is Already running or waiting for response."}
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 37.859 s - in com.finobank.ptaplus.fileTest
+2023-12-11 14:06:32,283 INFO  [org.apa.cam.imp.eng.AbstractCamelContext] (main) Apache Camel 3.20.1 (camel-1) is shutting down (timeout:45s)
+2023-12-11 14:06:32,329 INFO  [org.apa.cam.imp.eng.DefaultShutdownStrategy] (Camel (camel-1) thread #2 - ShutdownTask) Waiting as there are still 1 inflight and pending exchanges to complete, timeout in 45 seconds. Inflights per route: [route2 = 1]
+2023-12-11 14:06:33,331 INFO  [org.apa.cam.imp.eng.DefaultShutdownStrategy] (Camel (camel-1) thread #2 - ShutdownTask) Waiting as there are still 1 inflight and pending exchanges to complete, timeout in 44 seconds. Inflights per route: [route2 = 1]
+2023-12-11 14:06:34,349 INFO  [org.apa.cam.imp.eng.AbstractCamelContext] (main) Routes stopped (stopped:2)
+2023-12-11 14:06:34,349 INFO  [org.apa.cam.imp.eng.AbstractCamelContext] (main)     Stopped route2 (sftp://sftp_user@localhost:8007/uploads/Settlement/IFT_Response)
+2023-12-11 14:06:34,349 INFO  [org.apa.cam.imp.eng.AbstractCamelContext] (main)     Stopped route1 (direct://settlement-ift-processing-route)
+2023-12-11 14:06:34,356 INFO  [org.apa.cam.imp.eng.AbstractCamelContext] (main) Apache Camel 3.20.1 (camel-1) shutdown in 2s73ms (uptime:10s)
+2023-12-11 14:06:34,512 INFO  [io.quarkus] (main) finobank-settlement stopped in 2.287s
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  01:09 min
+[INFO] Finished at: 2023-12-11T14:06:36+05:30
+[INFO] ------------------------------------------------------------------------
+[WARNING] 
+[WARNING] Plugin validation issues were detected in 4 plugin(s)
+[WARNING] 
+[WARNING]  * org.apache.maven.plugins:maven-compiler-plugin:3.10.1
+[WARNING]  * io.quarkus.platform:quarkus-maven-plugin:2.16.5.Final
+[WARNING]  * org.apache.maven.plugins:maven-surefire-plugin:3.0.0-M7
+[WARNING]  * org.apache.maven.plugins:maven-resources-plugin:3.3.0
+[WARNING] 
+[WARNING] For more or less details, use 'maven.plugin.validation' property with one of the values (case insensitive): [BRIEF, DEFAULT, VERBOSE]
+[WARNING] 

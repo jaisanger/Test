@@ -1,0 +1,204 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< com.finobank.ptaplus:finobank-settlement >--------------
+[INFO] Building finobank-settlement 1.0.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ finobank-settlement ---
+[INFO] Deleting /home/keenable/Music/ptaplusSettlement/fino/ptaplussettlement/target
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ finobank-settlement ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 4 resources
+[INFO] 
+[INFO] --- quarkus-maven-plugin:2.16.5.Final:generate-code (default) @ finobank-settlement ---
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.10.1:compile (default-compile) @ finobank-settlement ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 32 source files to /home/keenable/Music/ptaplusSettlement/fino/ptaplussettlement/target/classes
+[INFO] /home/keenable/Music/ptaplusSettlement/fino/ptaplussettlement/src/main/java/com/finobank/ptaplus/payload/request/TransactionRequest.java: /home/keenable/Music/ptaplusSettlement/fino/ptaplussettlement/src/main/java/com/finobank/ptaplus/payload/request/TransactionRequest.java uses unchecked or unsafe operations.
+[INFO] /home/keenable/Music/ptaplusSettlement/fino/ptaplussettlement/src/main/java/com/finobank/ptaplus/payload/request/TransactionRequest.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- quarkus-maven-plugin:2.16.5.Final:dev (default-cli) @ finobank-settlement ---
+[INFO] Invoking org.apache.maven.plugins:maven-resources-plugin:2.6:testResources @ finobank-settlement
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] Invoking io.quarkus.platform:quarkus-maven-plugin:2.16.5.Final:generate-code-tests @ finobank-settlement
+[INFO] Invoking org.apache.maven.plugins:maven-compiler-plugin:3.10.1:testCompile @ finobank-settlement
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 3 source files to /home/keenable/Music/ptaplusSettlement/fino/ptaplussettlement/target/test-classes
+[WARNING] [io.quarkus.maven.MavenDevModeLauncher$Builder] org.apiguardian:apiguardian-api::jar classpath entry /home/keenable/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar was overriden with /home/keenable/.m2/repository/org/apiguardian/apiguardian-api/1.1.1/apiguardian-api-1.1.1.jar
+[ERROR] Port 5005 in use, not starting in debug mode
+LDAP_SEARCH_REQUEST :
+MessageType : SEARCH_REQUEST
+Message ID : -1
+    SearchRequest
+        baseDn : 'ou=glbatchs,dc=finoptaplus,dc=com'
+        filter : '(objectclass=groupOfUniqueNames)'
+        scope : whole subtree
+        typesOnly : false
+        Size Limit : no limit
+        Time Limit : no limit
+        Deref Aliases : deref Always
+        attributes : '*'
+org.apache.directory.api.ldap.model.message.SearchRequestImpl@a7bbd39d
+LDAP_SEARCH_REQUEST: with basedn {} and searchfilter {}ou=glbatchs,dc=finoptaplus,dc=com   (objectclass=groupOfUniqueNames)
+{batchRule.batch1=18014,18011,18012,18013,18015, ldapPassword=redhat, AllBatchsFilter=(objectclass=groupOfUniqueNames), AllBatchsBaseDn=ou=glbatchs,dc=finoptaplus,dc=com, ldapbindDn=cn=Directory Manager, ldapPortErrorMap=3390, ldapHostErrorMap=135.181.0.42}
+null
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  24:48 min
+[INFO] Finished at: 2023-10-12T01:17:13+05:30
+[INFO] ------------------------------------------------------------------------
+ [org.apa.dir.api.lda.cod.osg.DefaultLdapCodecService] (main) MSG_06000_REGISTERED_CONTROL_FACTORY (2.16.840.1.113730.3.4.2)
+2023-10-12 00:52:54,196 INFO  [org.apa.dir.api.lda.cod.osg.DefaultLdapCodecService] (main) MSG_06000_REGISTERED_CONTROL_FACTORY (1.2.840.113556.1.4.319)
+2023-10-12 00:52:54,197 INFO  [org.apa.dir.api.lda.cod.osg.DefaultLdapCodecService] (main) MSG_06000_REGISTERED_CONTROL_FACTORY (2.16.840.1.113730.3.4.3)
+2023-10-12 00:52:54,197 INFO  [org.apa.dir.api.lda.cod.osg.DefaultLdapCodecService] (main) MSG_06000_REGISTERED_CONTROL_FACTORY (2.16.840.1.113730.3.4.18)
+2023-10-12 00:52:54,198 INFO  [org.apa.dir.api.lda.cod.osg.DefaultLdapCodecService] (main) MSG_06000_REGISTERED_CONTROL_FACTORY (1.2.840.113556.1.4.473)
+2023-10-12 00:52:54,199 INFO  [org.apa.dir.api.lda.cod.osg.DefaultLdapCodecService] (main) MSG_06000_REGISTERED_CONTROL_FACTORY (1.2.840.113556.1.4.474)
+2023-10-12 00:52:54,199 INFO  [org.apa.dir.api.lda.cod.osg.DefaultLdapCodecService] (main) MSG_06000_REGISTERED_CONTROL_FACTORY (1.3.6.1.4.1.4203.1.10.1)
+2023-10-12 00:52:54,200 INFO  [org.apa.dir.api.lda.cod.StockCodecFactoryUtil] (main) MSG_06000_REGISTERED_CONTROL_FACTORY (1.3.6.1.4.1.18060.0.0.1)
+2023-10-12 00:52:54,200 INFO  [org.apa.dir.api.lda.cod.StockCodecFactoryUtil] (main) MSG_06000_REGISTERED_CONTROL_FACTORY (2.16.840.1.113730.3.4.7)
+2023-10-12 00:52:54,200 INFO  [org.apa.dir.api.lda.cod.StockCodecFactoryUtil] (main) MSG_06000_REGISTERED_CONTROL_FACTORY (2.16.840.1.113730.3.4.2)
+2023-10-12 00:52:54,200 INFO  [org.apa.dir.api.lda.cod.StockCodecFactoryUtil] (main) MSG_06000_REGISTERED_CONTROL_FACTORY (1.2.840.113556.1.4.319)
+2023-10-12 00:52:54,200 INFO  [org.apa.dir.api.lda.cod.StockCodecFactoryUtil] (main) MSG_06000_REGISTERED_CONTROL_FACTORY (2.16.840.1.113730.3.4.3)
+2023-10-12 00:52:54,200 INFO  [org.apa.dir.api.lda.cod.StockCodecFactoryUtil] (main) MSG_06000_REGISTERED_CONTROL_FACTORY (2.16.840.1.113730.3.4.18)
+2023-10-12 00:52:54,200 INFO  [org.apa.dir.api.lda.cod.StockCodecFactoryUtil] (main) MSG_06000_REGISTERED_CONTROL_FACTORY (1.2.840.113556.1.4.473)
+2023-10-12 00:52:54,200 INFO  [org.apa.dir.api.lda.cod.StockCodecFactoryUtil] (main) MSG_06000_REGISTERED_CONTROL_FACTORY (1.2.840.113556.1.4.474)
+2023-10-12 00:52:54,200 INFO  [org.apa.dir.api.lda.cod.StockCodecFactoryUtil] (main) MSG_06000_REGISTERED_CONTROL_FACTORY (1.3.6.1.4.1.4203.1.10.1)
+2023-10-12 00:52:54,204 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (main) MSG_06000_REGISTERED_CONTROL_FACTORY (1.2.840.113556.1.4.841)
+2023-10-12 00:52:54,204 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (main) MSG_06000_REGISTERED_CONTROL_FACTORY (1.2.840.113556.1.4.841)
+2023-10-12 00:52:54,205 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (main) MSG_06000_REGISTERED_CONTROL_FACTORY (1.2.840.113556.1.4.2239)
+2023-10-12 00:52:54,206 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (main) MSG_06000_REGISTERED_CONTROL_FACTORY (1.2.840.113556.1.4.417)
+2023-10-12 00:52:54,206 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (main) MSG_06000_REGISTERED_CONTROL_FACTORY (1.2.840.113556.1.4.528)
+2023-10-12 00:52:54,207 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (main) MSG_06000_REGISTERED_CONTROL_FACTORY (2.16.840.1.113730.3.4.4)
+2023-10-12 00:52:54,207 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (main) MSG_06000_REGISTERED_CONTROL_FACTORY (1.3.6.1.4.1.42.2.27.8.5.1)
+2023-10-12 00:52:54,208 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (main) MSG_06000_REGISTERED_CONTROL_FACTORY (1.3.6.1.4.1.42.2.27.8.5.1)
+2023-10-12 00:52:54,208 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (main) MSG_06000_REGISTERED_CONTROL_FACTORY (1.2.840.113556.1.4.1413)
+2023-10-12 00:52:54,209 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (main) MSG_06000_REGISTERED_CONTROL_FACTORY (1.3.6.1.4.1.4203.1.9.1.3)
+2023-10-12 00:52:54,210 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (main) MSG_06000_REGISTERED_CONTROL_FACTORY (1.3.6.1.4.1.4203.1.9.1.1)
+2023-10-12 00:52:54,211 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (main) MSG_06000_REGISTERED_CONTROL_FACTORY (1.3.6.1.4.1.4203.1.9.1.2)
+2023-10-12 00:52:54,212 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (main) MSG_06000_REGISTERED_CONTROL_FACTORY (1.3.6.1.1.21.2)
+2023-10-12 00:52:54,212 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (main) MSG_06000_REGISTERED_CONTROL_FACTORY (2.16.840.1.113730.3.4.9)
+2023-10-12 00:52:54,213 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (main) MSG_06000_REGISTERED_CONTROL_FACTORY (2.16.840.1.113730.3.4.10)
+2023-10-12 00:52:54,213 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (main) MSG_06000_REGISTERED_CONTROL_FACTORY (1.3.6.1.4.1.4203.666.5.12)
+2023-10-12 00:52:54,215 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (main) MSG_06001_REGISTERED_EXTENDED_OP_FACTORY (1.3.6.1.1.8)
+2023-10-12 00:52:54,215 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (main) MSG_06001_REGISTERED_EXTENDED_OP_FACTORY (1.3.6.1.4.1.18060.0.1.8)
+2023-10-12 00:52:54,216 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (main) MSG_06001_REGISTERED_EXTENDED_OP_FACTORY (1.3.6.1.1.21.3)
+2023-10-12 00:52:54,217 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (main) MSG_06001_REGISTERED_EXTENDED_OP_FACTORY (1.3.6.1.4.1.18060.0.1.5)
+2023-10-12 00:52:54,218 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (main) MSG_06001_REGISTERED_EXTENDED_OP_FACTORY (1.3.6.1.4.1.18060.0.1.3)
+2023-10-12 00:52:54,218 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (main) MSG_06001_REGISTERED_EXTENDED_OP_FACTORY (1.3.6.1.4.1.1466.20036)
+2023-10-12 00:52:54,219 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (main) MSG_06001_REGISTERED_EXTENDED_OP_FACTORY (1.3.6.1.4.1.4203.1.11.1)
+2023-10-12 00:52:54,220 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (main) MSG_06001_REGISTERED_EXTENDED_OP_FACTORY (1.3.6.1.4.1.1466.20037)
+2023-10-12 00:52:54,220 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (main) MSG_06001_REGISTERED_EXTENDED_OP_FACTORY (1.3.6.1.1.21.1)
+2023-10-12 00:52:54,221 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (main) MSG_06001_REGISTERED_EXTENDED_OP_FACTORY (1.3.6.1.4.1.18060.0.1.6)
+2023-10-12 00:52:54,222 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (main) MSG_06001_REGISTERED_EXTENDED_OP_FACTORY (1.3.6.1.4.1.4203.1.11.3)
+2023-10-12 00:52:54,224 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (main) MSG_06002_REGISTERED_INTERMEDIATE_FACTORY (1.3.6.1.4.1.4203.1.9.1.4)
+LDAP_SEARCH_REQUEST :
+MessageType : SEARCH_REQUEST
+Message ID : -1
+    SearchRequest
+        baseDn : 'ou=glbatchs,dc=finoptaplus,dc=com'
+        filter : '(objectclass=groupOfUniqueNames)'
+        scope : whole subtree
+        typesOnly : false
+        Size Limit : no limit
+        Time Limit : no limit
+        Deref Aliases : deref Always
+        attributes : '*'
+org.apache.directory.api.ldap.model.message.SearchRequestImpl@fab7cf24
+
+LDAP_SEARCH_REQUEST: with basedn {} and searchfilter {}ou=glbatchs,dc=finoptaplus,dc=com   (objectclass=groupOfUniqueNames)
+{batchRule.batch1=18014,18011,18012,18013,18015, ldapPassword=redhat, AllBatchsFilter=(objectclass=groupOfUniqueNames), AllBatchsBaseDn=ou=glbatchs,dc=finoptaplus,dc=com, ldapbindDn=cn=Directory Manager, ldapPortErrorMap=3390, ldapHostErrorMap=135.181.0.42}
+null
+__  ____  __  _____   ___  __ ____  ______ 
+ --/ __ \/ / / / _ | / _ \/ //_/ / / / __/ 
+ -/ /_/ / /_/ / __ |/ , _/ ,< / /_/ /\ \   
+--\___\_\____/_/ |_/_/|_/_/|_|\____/___/   
+2023-10-12 00:53:08,863 INFO  [org.apa.dir.api.lda.cod.osg.DefaultLdapCodecService] (Quarkus Main Thread) MSG_06000_REGISTERED_CONTROL_FACTORY (1.3.6.1.4.1.18060.0.0.1)
+
+2023-10-12 00:53:08,863 INFO  [org.apa.dir.api.lda.cod.osg.DefaultLdapCodecService] (Quarkus Main Thread) MSG_06000_REGISTERED_CONTROL_FACTORY (2.16.840.1.113730.3.4.7)
+2023-10-12 00:53:08,863 INFO  [org.apa.dir.api.lda.cod.osg.DefaultLdapCodecService] (Quarkus Main Thread) MSG_06000_REGISTERED_CONTROL_FACTORY (2.16.840.1.113730.3.4.2)
+2023-10-12 00:53:08,863 INFO  [org.apa.dir.api.lda.cod.osg.DefaultLdapCodecService] (Quarkus Main Thread) MSG_06000_REGISTERED_CONTROL_FACTORY (1.2.840.113556.1.4.319)
+2023-10-12 00:53:08,863 INFO  [org.apa.dir.api.lda.cod.osg.DefaultLdapCodecService] (Quarkus Main Thread) MSG_06000_REGISTERED_CONTROL_FACTORY (2.16.840.1.113730.3.4.3)
+2023-10-12 00:53:08,864 INFO  [org.apa.dir.api.lda.cod.osg.DefaultLdapCodecService] (Quarkus Main Thread) MSG_06000_REGISTERED_CONTROL_FACTORY (2.16.840.1.113730.3.4.18)
+2023-10-12 00:53:08,864 INFO  [org.apa.dir.api.lda.cod.osg.DefaultLdapCodecService] (Quarkus Main Thread) MSG_06000_REGISTERED_CONTROL_FACTORY (1.2.840.113556.1.4.473)
+2023-10-12 00:53:08,864 INFO  [org.apa.dir.api.lda.cod.osg.DefaultLdapCodecService] (Quarkus Main Thread) MSG_06000_REGISTERED_CONTROL_FACTORY (1.2.840.113556.1.4.474)
+2023-10-12 00:53:08,864 INFO  [org.apa.dir.api.lda.cod.osg.DefaultLdapCodecService] (Quarkus Main Thread) MSG_06000_REGISTERED_CONTROL_FACTORY (1.3.6.1.4.1.4203.1.10.1)
+2023-10-12 00:53:08,864 INFO  [org.apa.dir.api.lda.cod.StockCodecFactoryUtil] (Quarkus Main Thread) MSG_06000_REGISTERED_CONTROL_FACTORY (1.3.6.1.4.1.18060.0.0.1)
+2023-10-12 00:53:08,864 INFO  [org.apa.dir.api.lda.cod.StockCodecFactoryUtil] (Quarkus Main Thread) MSG_06000_REGISTERED_CONTROL_FACTORY (2.16.840.1.113730.3.4.7)
+2023-10-12 00:53:08,864 INFO  [org.apa.dir.api.lda.cod.StockCodecFactoryUtil] (Quarkus Main Thread) MSG_06000_REGISTERED_CONTROL_FACTORY (2.16.840.1.113730.3.4.2)
+2023-10-12 00:53:08,864 INFO  [org.apa.dir.api.lda.cod.StockCodecFactoryUtil] (Quarkus Main Thread) MSG_06000_REGISTERED_CONTROL_FACTORY (1.2.840.113556.1.4.319)
+2023-10-12 00:53:08,864 INFO  [org.apa.dir.api.lda.cod.StockCodecFactoryUtil] (Quarkus Main Thread) MSG_06000_REGISTERED_CONTROL_FACTORY (2.16.840.1.113730.3.4.3)
+2023-10-12 00:53:08,864 INFO  [org.apa.dir.api.lda.cod.StockCodecFactoryUtil] (Quarkus Main Thread) MSG_06000_REGISTERED_CONTROL_FACTORY (2.16.840.1.113730.3.4.18)
+2023-10-12 00:53:08,864 INFO  [org.apa.dir.api.lda.cod.StockCodecFactoryUtil] (Quarkus Main Thread) MSG_06000_REGISTERED_CONTROL_FACTORY (1.2.840.113556.1.4.473)
+2023-10-12 00:53:08,864 INFO  [org.apa.dir.api.lda.cod.StockCodecFactoryUtil] (Quarkus Main Thread) MSG_06000_REGISTERED_CONTROL_FACTORY (1.2.840.113556.1.4.474)
+2023-10-12 00:53:08,864 INFO  [org.apa.dir.api.lda.cod.StockCodecFactoryUtil] (Quarkus Main Thread) MSG_06000_REGISTERED_CONTROL_FACTORY (1.3.6.1.4.1.4203.1.10.1)
+2023-10-12 00:53:08,865 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (Quarkus Main Thread) MSG_06000_REGISTERED_CONTROL_FACTORY (1.2.840.113556.1.4.841)
+2023-10-12 00:53:08,865 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (Quarkus Main Thread) MSG_06000_REGISTERED_CONTROL_FACTORY (1.2.840.113556.1.4.841)
+2023-10-12 00:53:08,866 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (Quarkus Main Thread) MSG_06000_REGISTERED_CONTROL_FACTORY (1.2.840.113556.1.4.2239)
+2023-10-12 00:53:08,866 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (Quarkus Main Thread) MSG_06000_REGISTERED_CONTROL_FACTORY (1.2.840.113556.1.4.417)
+2023-10-12 00:53:08,866 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (Quarkus Main Thread) MSG_06000_REGISTERED_CONTROL_FACTORY (1.2.840.113556.1.4.528)
+2023-10-12 00:53:08,866 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (Quarkus Main Thread) MSG_06000_REGISTERED_CONTROL_FACTORY (2.16.840.1.113730.3.4.4)
+2023-10-12 00:53:08,866 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (Quarkus Main Thread) MSG_06000_REGISTERED_CONTROL_FACTORY (1.3.6.1.4.1.42.2.27.8.5.1)
+2023-10-12 00:53:08,866 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (Quarkus Main Thread) MSG_06000_REGISTERED_CONTROL_FACTORY (1.3.6.1.4.1.42.2.27.8.5.1)
+2023-10-12 00:53:08,867 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (Quarkus Main Thread) MSG_06000_REGISTERED_CONTROL_FACTORY (1.2.840.113556.1.4.1413)
+2023-10-12 00:53:08,867 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (Quarkus Main Thread) MSG_06000_REGISTERED_CONTROL_FACTORY (1.3.6.1.4.1.4203.1.9.1.3)
+2023-10-12 00:53:08,867 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (Quarkus Main Thread) MSG_06000_REGISTERED_CONTROL_FACTORY (1.3.6.1.4.1.4203.1.9.1.1)
+2023-10-12 00:53:08,867 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (Quarkus Main Thread) MSG_06000_REGISTERED_CONTROL_FACTORY (1.3.6.1.4.1.4203.1.9.1.2)
+2023-10-12 00:53:08,867 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (Quarkus Main Thread) MSG_06000_REGISTERED_CONTROL_FACTORY (1.3.6.1.1.21.2)
+2023-10-12 00:53:08,867 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (Quarkus Main Thread) MSG_06000_REGISTERED_CONTROL_FACTORY (2.16.840.1.113730.3.4.9)
+2023-10-12 00:53:08,868 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (Quarkus Main Thread) MSG_06000_REGISTERED_CONTROL_FACTORY (2.16.840.1.113730.3.4.10)
+2023-10-12 00:53:08,868 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (Quarkus Main Thread) MSG_06000_REGISTERED_CONTROL_FACTORY (1.3.6.1.4.1.4203.666.5.12)
+2023-10-12 00:53:08,868 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (Quarkus Main Thread) MSG_06001_REGISTERED_EXTENDED_OP_FACTORY (1.3.6.1.1.8)
+2023-10-12 00:53:08,868 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (Quarkus Main Thread) MSG_06001_REGISTERED_EXTENDED_OP_FACTORY (1.3.6.1.4.1.18060.0.1.8)
+2023-10-12 00:53:08,869 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (Quarkus Main Thread) MSG_06001_REGISTERED_EXTENDED_OP_FACTORY (1.3.6.1.1.21.3)
+2023-10-12 00:53:08,869 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (Quarkus Main Thread) MSG_06001_REGISTERED_EXTENDED_OP_FACTORY (1.3.6.1.4.1.18060.0.1.5)
+2023-10-12 00:53:08,869 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (Quarkus Main Thread) MSG_06001_REGISTERED_EXTENDED_OP_FACTORY (1.3.6.1.4.1.18060.0.1.3)
+2023-10-12 00:53:08,869 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (Quarkus Main Thread) MSG_06001_REGISTERED_EXTENDED_OP_FACTORY (1.3.6.1.4.1.1466.20036)
+2023-10-12 00:53:08,870 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (Quarkus Main Thread) MSG_06001_REGISTERED_EXTENDED_OP_FACTORY (1.3.6.1.4.1.4203.1.11.1)
+2023-10-12 00:53:08,870 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (Quarkus Main Thread) MSG_06001_REGISTERED_EXTENDED_OP_FACTORY (1.3.6.1.4.1.1466.20037)
+2023-10-12 00:53:08,870 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (Quarkus Main Thread) MSG_06001_REGISTERED_EXTENDED_OP_FACTORY (1.3.6.1.1.21.1)
+2023-10-12 00:53:08,870 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (Quarkus Main Thread) MSG_06001_REGISTERED_EXTENDED_OP_FACTORY (1.3.6.1.4.1.18060.0.1.6)
+2023-10-12 00:53:08,870 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (Quarkus Main Thread) MSG_06001_REGISTERED_EXTENDED_OP_FACTORY (1.3.6.1.4.1.4203.1.11.3)
+2023-10-12 00:53:08,871 INFO  [org.apa.dir.api.lda.ext.ExtrasCodecFactoryUtil] (Quarkus Main Thread) MSG_06002_REGISTERED_INTERMEDIATE_FACTORY (1.3.6.1.4.1.4203.1.9.1.4)
+2023-10-12 00:53:14,116 INFO  [org.apa.cam.qua.cor.CamelBootstrapRecorder] (Quarkus Main Thread) Bootstrap runtime: org.apache.camel.quarkus.main.CamelMainRuntime
+2023-10-12 00:53:14,117 INFO  [org.apa.cam.mai.MainSupport] (Quarkus Main Thread) Apache Camel (Main) 3.20.1 is starting
+2023-10-12 00:53:14,270 INFO  [org.apa.cam.imp.eng.AbstractCamelContext] (Quarkus Main Thread) Apache Camel 3.20.1 (camel-1) is starting
+2023-10-12 00:53:14,276 INFO  [org.apa.cam.imp.eng.AbstractCamelContext] (Quarkus Main Thread) Routes startup (started:0)
+2023-10-12 00:53:14,276 INFO  [org.apa.cam.imp.eng.AbstractCamelContext] (Quarkus Main Thread) Apache Camel 3.20.1 (camel-1) started in 18ms (build:0ms init:13ms start:5ms)
+2023-10-12 00:53:14,419 INFO  [io.quarkus] (Quarkus Main Thread) finobank-settlement 1.0.0-SNAPSHOT on JVM (powered by Quarkus 2.16.5.Final) started in 22.037s. Listening on: http://localhost:8081
+2023-10-12 00:53:14,420 INFO  [io.quarkus] (Quarkus Main Thread) Profile dev activated. Live Coding activated.
+2023-10-12 00:53:14,423 INFO  [io.quarkus] (Quarkus Main Thread) Installed features: [agroal, camel-bindy, camel-core, cdi, cucumber, hibernate-orm, hibernate-orm-panache, hibernate-validator, jdbc-postgresql, micrometer, narayana-jta, opentelemetry, opentelemetry-otlp-exporter, rest-client, rest-client-jackson, resteasy, resteasy-jackson, smallrye-context-propagation, smallrye-health, smallrye-openapi, swagger-ui, vertx]
+
+2023-10-12 00:54:01,735 INFO  [com.fin.pta.ser.SettlementServices] (executor-thread-0) Request recieved  SettlementRequest(batchId=batch1, appId=APPPTA, userClass=ptauser, executeAt=null, previousExecutionTime=null, apiExecutionMode=false) at 2023-10-12T00:54:01.735608 
+2023-10-12 00:54:01,916 INFO  [com.fin.pta.ser.FinoSettlement] (executor-thread-0) Settlement Request for Batch batch1, with ledgers [18014, 18011, 18012, 18013, 18015].
+2023-10-12 00:54:02,833 INFO  [com.fin.pta.ser.SettlementTransactions] (executor-thread-0) Running settlement for 1 transactions in partnerGl 18014.
+2023-10-12 00:54:02,905 INFO  [com.fin.pta.ser.TransactionUtils] (executor-thread-0) Requesting transaction with payload TransactionRequest(uniqueTransactionId=P1697052242839, userClass=ptauser, transCategory=PTASTLMT, appId=APPPTA, iftFileId=null, referenceNo=1697052242840, reversalFlag=F, chargeOverride=null, analysisFlag=null, isClubbed=null, isInclusive=null, valueDate=null, initiatingBranchCode=null, userId=null, partnerId=null, merchantsId=null, acctFundTransferLegs=[FundTransferLegRequest(postingPair=1, creditDebitFlag=C, transactionType=PTASTLMT, trantype=null, postingAmount=15.00, accountNumber=12344321, amount=15.00, currency=INR, transactionComment=null, costCentre=null, supportData=null, transferLegsSupportData=null, beneficiaryRefOrMmid=null, beneficiaryMobile=null, remitterMobile=null, remitterMmid=null, beneficiaryAccountNo=null, beneficiaryIfsc=null, remarks=null, restricted=false, restrictionId=null, restrictionString=null, productId=0, transactionAllowed=true, legId=null, isAccount=false), FundTransferLegRequest(postingPair=1, creditDebitFlag=D, transactionType=PTASTLMT, trantype=null, postingAmount=15.00, accountNumber=18014, amount=15.00, currency=INR, transactionComment=null, costCentre=null, supportData=null, transferLegsSupportData=null, beneficiaryRefOrMmid=null, beneficiaryMobile=null, remitterMobile=null, remitterMmid=null, beneficiaryAccountNo=null, beneficiaryIfsc=null, remarks=null, restricted=false, restrictionId=null, restrictionString=null, productId=0, transactionAllowed=true, legId=null, isAccount=false)]).
+
+2023-10-12 00:54:07,560 INFO  [com.fin.pta.ser.TransactionUtils] (executor-thread-0) Requesting transaction with payload TransactionRequest(uniqueTransactionId=P1697052247560, userClass=ptauser, transCategory=PTASTLMT, appId=APPPTA, iftFileId=null, referenceNo=1697052247560, reversalFlag=F, chargeOverride=null, analysisFlag=null, isClubbed=null, isInclusive=null, valueDate=null, initiatingBranchCode=null, userId=null, partnerId=null, merchantsId=null, acctFundTransferLegs=[FundTransferLegRequest(postingPair=1, creditDebitFlag=D, transactionType=PTASTLMT, trantype=null, postingAmount=15.00, accountNumber=12344321, amount=15.00, currency=INR, transactionComment=null, costCentre=null, supportData=null, transferLegsSupportData=null, beneficiaryRefOrMmid=null, beneficiaryMobile=null, remitterMobile=null, remitterMmid=null, beneficiaryAccountNo=null, beneficiaryIfsc=null, remarks=null, restricted=false, restrictionId=null, restrictionString=null, productId=0, transactionAllowed=true, legId=null, isAccount=false), FundTransferLegRequest(postingPair=1, creditDebitFlag=C, transactionType=PTASTLMT, trantype=null, postingAmount=15.00, accountNumber=43211234, amount=15.00, currency=INR, transactionComment=null, costCentre=null, supportData=null, transferLegsSupportData=null, beneficiaryRefOrMmid=null, beneficiaryMobile=null, remitterMobile=null, remitterMmid=null, beneficiaryAccountNo=null, beneficiaryIfsc=null, remarks=null, restricted=false, restrictionId=null, restrictionString=null, productId=0, transactionAllowed=true, legId=null, isAccount=false)]).
+
+2023-10-12 00:54:10,272 SEVERE [io.ope.exp.int.grp.OkHttpGrpcExporter] (OkHttp http://localhost:4317/...) Failed to export spans. The request could not be executed. Full error message: Failed to connect to localhost/127.0.0.1:4317
+2023-10-12 00:54:12,291 INFO  [com.fin.pta.ser.TransactionUtils] (executor-thread-0) adding transaction with SettlementAudit(id=null, ptaTransSeqNo=P1697052242839, referenceNo=1697052242840, postingSequence=1, postingPair=1, isCharge=false, isTax=false, postingAmount=15.00, debitGlAccount=18014, debitGlAccountBalanceAmount=10.00, creditGlAccount=12344321, creditGlAccountBalanceAmount=500015.00, createdAt=2023-10-12 00:54:03.094, valueDate=2023-10-12 00:54:03.088, reversed=false, transactionType=PTASTLMT, isCreditAccount=false, isDebitAccount=false, debitGlAccountAvailableBalanceAmount=null, creditGlAccountAvailableBalanceAmount=null, isSettle=false) in settlement table.
+
+2023-10-12 00:54:13,302 INFO  [com.fin.pta.ser.TransactionUtils] (executor-thread-0) adding transaction with SettlementAudit(id=null, ptaTransSeqNo=P1697052247560, referenceNo=1697052247560, postingSequence=1, postingPair=1, isCharge=false, isTax=false, postingAmount=15.00, debitGlAccount=12344321, debitGlAccountBalanceAmount=500000.00, creditGlAccount=43211234, creditGlAccountBalanceAmount=999990.00, createdAt=2023-10-12 00:54:07.655, valueDate=2023-10-12 00:54:07.651, reversed=false, transactionType=PTASTLMT, isCreditAccount=false, isDebitAccount=false, debitGlAccountAvailableBalanceAmount=null, creditGlAccountAvailableBalanceAmount=null, isSettle=false) in settlement table.
+
+2023-10-12 00:54:15,274 SEVERE [io.ope.exp.int.grp.OkHttpGrpcExporter] (OkHttp http://localhost:4317/...) Failed to export spans. The request could not be executed. Full error message: Failed to connect to localhost/127.0.0.1:4317
+2023-10-12 00:54:15,943 ERROR [com.fin.pta.ser.SettlementTransactions] (executor-thread-0) No transaction to settle for partnerGl 18011.
+2023-10-12 00:54:15,944 ERROR [com.fin.pta.ser.SettlementTransactions] (executor-thread-0) Not sufficient ammount for settlement.
+2023-10-12 00:54:16,759 ERROR [com.fin.pta.ser.SettlementTransactions] (executor-thread-0) No transaction to settle for partnerGl 18012.
+2023-10-12 00:54:16,760 ERROR [com.fin.pta.ser.SettlementTransactions] (executor-thread-0) Not sufficient ammount for settlement.
+2023-10-12 00:54:17,577 ERROR [com.fin.pta.ser.SettlementTransactions] (executor-thread-0) No transaction to settle for partnerGl 18013.
+2023-10-12 00:54:17,578 ERROR [com.fin.pta.ser.SettlementTransactions] (executor-thread-0) Not sufficient ammount for settlement.
+2023-10-12 00:54:18,354 ERROR [com.fin.pta.ser.SettlementTransactions] (executor-thread-0) No transaction to settle for partnerGl 18015.
+2023-10-12 00:54:18,355 ERROR [com.fin.pta.ser.SettlementTransactions] (executor-thread-0) Not sufficient ammount for settlement.
+2023-10-12 00:54:18,355 INFO  [com.fin.pta.ser.SettlementServices] (executor-thread-0) Starting CBS Settlement in IFT Mode at 2023-10-12T00:54:18.355616
+2023-10-12 00:54:18,582 INFO  [com.fin.pta.ser.IFTFileGenerator] (executor-thread-0) Unsettled List in settlement Table : [SettlementAudit(id=51, ptaTransSeqNo=P1697052242839, referenceNo=1697052242840, postingSequence=1, postingPair=1, isCharge=false, isTax=false, postingAmount=15.00, debitGlAccount=18014, debitGlAccountBalanceAmount=10.00, creditGlAccount=12344321, creditGlAccountBalanceAmount=500015.00, createdAt=2023-10-12 00:54:03.094, valueDate=2023-10-12 00:54:03.088, reversed=false, transactionType=PTASTLMT, isCreditAccount=false, isDebitAccount=false, debitGlAccountAvailableBalanceAmount=null, creditGlAccountAvailableBalanceAmount=null, isSettle=false), SettlementAudit(id=52, ptaTransSeqNo=P1697052247560, referenceNo=1697052247560, postingSequence=1, postingPair=1, isCharge=false, isTax=false, postingAmount=15.00, debitGlAccount=12344321, debitGlAccountBalanceAmount=500000.00, creditGlAccount=43211234, creditGlAccountBalanceAmount=999990.00, createdAt=2023-10-12 00:54:07.655, valueDate=2023-10-12 00:54:07.651, reversed=false, transactionType=PTASTLMT, isCreditAccount=false, isDebitAccount=false, debitGlAccountAvailableBalanceAmount=null, creditGlAccountAvailableBalanceAmount=null, isSettle=false)]
+
+2023-10-12 00:54:18,600 INFO  [com.fin.pta.ser.IFTFileGenerator] (executor-thread-0) IFT row 0 : 9001|18014|12344321|15.00|PTASTLMT//12344321/12102023|PTASTLMT//18014/12102023|PTASTLMT|PTASTLMT|ZRFUT8#1697052242840~TCMT#PTASTLMT/PTASTLMT/1697052242840/12102023|ZRFUT8#1697052242840~TCMT#PTASTLMT/PTASTLMT/1697052242840/12102023|9001|
+2023-10-12 00:54:18,601 INFO  [com.fin.pta.ser.IFTFileGenerator] (executor-thread-0) IFT row 1 : 9001|18014|12344321|15.00|PTASTLMT//12344321/12102023|PTASTLMT//18014/12102023|PTASTLMT|PTASTLMT|ZRFUT8#1697052242840~TCMT#PTASTLMT/PTASTLMT/1697052242840/12102023|ZRFUT8#1697052242840~TCMT#PTASTLMT/PTASTLMT/1697052242840/12102023|9001|
+2023-10-12 00:54:18,601 INFO  [com.fin.pta.ser.IFTFileGenerator] (executor-thread-0) Settlement at cbs Completed.
+2023-10-12 00:54:18,602 INFO  [com.fin.pta.ser.SettlementServices] (executor-thread-0) Response from settlementCbsApi :SettlementResponse(responseCode=0, responseMessage=Settlement at cbs Completed.)
+2023-10-12 00:54:18,602 INFO  [com.fin.pta.ser.SettlementServices] (executor-thread-0) Response from settlementP2mPay :SettlementResponse(responseCode=0, responseMessage=Settlement Successfull.)
+2023-10-12 00:54:20,275 SEVERE [io.ope.exp.int.grp.OkHttpGrpcExporter] (OkHttp http://localhost:4317/...) Failed to export spans. The request could not be executed. Full error message: Failed to connect to localhost/127.0.0.1:4317

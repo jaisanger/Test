@@ -1,0 +1,17 @@
+{
+    "priority": 2,
+    "request": {
+        "method": "POST",
+        "url": "/post-transaction/api/v1/transaction"
+    },
+    "response": {
+        "status": "200",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "bodyFileName": "post_transaction_res.json"
+    }
+}
+
+
+

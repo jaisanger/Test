@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: p2m-pay-settlement-consumer
+  namespace: finoptaplus
+data:
+  quarkus.devservices.enabled: false
+  quarkus.http.cors: true
+  settlementIftFilePrefix: IFT_PTA_PTASETTLE_
+  settlementIftFileNameFormat: ${settlementIftFilePrefix}@{createDate}_@{iftSerial}.csv
+  quarkus.minio.allow-empty: false
+  minioConfig: endpoint=localhost&proxyPort=9000&accessKey=minioadmin&secretKey=minioadmin
+  quarkus.minio.url: http://localhost:9000
+  quarkus.minio.access-key: minioadmin
+  quarkus.minio.secret-key: minioadmin
+  ftpHost : ${FTP_SERVER_SERVICE_HOST:localhost}
+  ftpPort : ${FTP_SERVER_SERVICE_PORT:22}
+  ftpUsername : ${FTP_USER:anurag}
+  ftpPassword : ${FTP_PASSWORD:redhat}
+  settlementIFTftpUploadDir : /Settlement/IFT_Request
+  internalApiConnectTimedOut : 5000
+  internalApiReadTimedOut : 5000
+  settlementAppId: APPPTA
+  ptaSettlementTransReversalCategory: SETTLEMENT-REVERSAL
+  glSettlementProducerBucketName: glsettlementproducer
+  glSettlementConsumerBucketName: glsettlementconsumer
+  settlementCron: 0 0/1 * ? * *
+  updateMinioUploadStatus: UPDATE public.ift_uploaded_file SET date_sftp_upload = '@{date_sftp_upload}', sftp_url = '@{sftp_url}', remarks = 'Waiting for IFT processing at CBS end' WHERE file_name = '@{file_name}';
+  getIFTFileDetails: select file_id from public.ift_uploaded_file where file_name = '@{file_name}';
+  updateReversalSuccessStatusBatchAudit: UPDATE public.settlement_batch_audit SET execution_end_time = '@{execution_end_time}', reversed_at = '@{reversed_at}' WHERE ift_file_upload_id = @{ift_file_id} ;
+  updateReversalFailureStatusBatchAudit: UPDATE public.settlement_batch_audit SET failure_reason = '@{failure_reason}' WHERE ift_file_upload_id = @{ift_file_id} ;
+  updateReversalSuccessStatusSettlementLeg: UPDATE public.settlement_transaction_leg SET transaction_run_state = 'FAILURE', is_reversed = true, updated_at = null WHERE pta_reference_no = '@{pta_reference_no}' ;
+  updateReversalFailureStatusSettlementLeg: UPDATE public.settlement_transaction_leg SET failure_reason = '@{failure_reason}' WHERE pta_reference_no = '@{pta_reference_no}' ;

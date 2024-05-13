@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: p2m-pay-settlementrules
+  namespace: p2m-pay-application
+spec:
+  rules:
+    - host: microservice.apps.ocp4.example.com
+      http:
+        paths:
+          - path: /eod-config
+            pathType: Prefix
+            backend:
+              service:
+                name: p2m-pay-settlementrules
+                port:
+                  number: 80 
+          - path: /batch-config
+            pathType: Prefix
+            backend:
+              service:
+                name: p2m-pay-settlementrules
+                port:
+                  number: 80         

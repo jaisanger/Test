@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: p2m-pay-settlement-refactor
+  namespace: finoptaplus
+  labels:
+    app: p2m-pay-settlement-refactor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: p2m-pay-settlement-refactor
+  template:
+    metadata:
+      labels:
+        app: p2m-pay-settlement-refactor
+    spec:
+      containers:
+      - name: p2m-pay-settlement-refactor
+        image: nexus-registry-nexus.apps.ocp4.example.com/finoptaplusbackofficecrud:07-07-2023
+        env:
+          - name: TRMYHOST
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name : uniquePrefix
+            value: S-$(TRMYHOST)-
+        envFrom:
+        - configMapRef:
+                name: p2m-pay-settlement-refactor
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: xyz

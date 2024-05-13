@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: p2m-pay-settlementrules
+  namespace: p2m-pay-application
+  labels:
+    app: p2m-pay-settlementrules
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: p2m-pay-settlementrules
+  template:
+    metadata:
+      labels:
+        app: p2m-pay-settlementrules
+    spec:
+      containers:
+      - name: p2m-pay-settlementrules
+        image: nexus-registry-nexus.apps.ocp4.example.com/finoptaplusbackofficecrud:07-07-2023
+        env:
+          - name: TRMYHOST
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+        envFrom:
+        - configMapRef:
+                name: p2m-pay-settlementrules
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: xyz

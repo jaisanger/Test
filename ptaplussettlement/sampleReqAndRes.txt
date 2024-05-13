@@ -1,0 +1,40 @@
+## Settlement When there is any transaction 
+curl --location 'http://localhost:8081/api/v1/settlement/p2mpay' \
+ --header 'Content-Type: application/json' \
+ --data '{
+     "batchId": "batch2",
+     "appId": "APPPTA",
+     "userClass": "ptauser",
+     "apiExecutionMode": true,
+     "settlementOfTheDay":2
+ }'
+SettlementResponse(responseCode=0, responseMessage=Settlement Successfull.)
+
+## EOD When there is any transaction 
+curl --location 'http://localhost:8080/api/v1/settlement/p2mpay/eod' \
+--header 'Content-Type: application/json' \
+--data '{
+    "batchId": ["batch2"],
+    "appId": "APPPTA",
+    "userClass": "ptauser",
+    "apiExecutionMode": true
+}'
+SettlementResponse(responseCode=0, responseMessage=Settlement Successfull.)
+
+## Settlement When there is no transaction 
+curl --location 'http://localhost:8081/api/v1/settlement/p2mpay/eod' --header 'Content-Type:(base) keenable@keenable-Latitude-5480:~/Music/ptaplusSettlement/fino/vbg-fino-final/finobank-pta-suite/pta-posting$ curl --location 'http://localhost:8081/api/v1/settlement/p2mpay' --header 'Content-Type: application/json' --data '{
+    "batchId": "batch1",
+    "appId": "APPPTA",
+    "userClass": "ptauser",
+    "apiExecutionMode": false
+}'
+SettlementResponse(responseCode=1, responseMessage=No Transaction to Settle.)
+
+## EOD When there is no transaction 
+curl --location 'http://localhost:8081/api/v1/settlement/p2mpay' --header 'Content-Type: application/json' --data '{            /eod
+    "batchId": "batch1",
+    "appId": "APPPTA",
+    "userClass": "ptauser",
+    "apiExecutionMode": false
+}'
+SettlementResponse(responseCode=0, responseMessage=No transaction to Settle.)

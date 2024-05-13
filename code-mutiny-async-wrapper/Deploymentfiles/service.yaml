@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: p2m-pay-code-mutiny-async-wrapper
+  namespace: p2m-pay-application
+spec:
+  selector:
+    app: p2m-pay-code-mutiny-async-wrapper
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080

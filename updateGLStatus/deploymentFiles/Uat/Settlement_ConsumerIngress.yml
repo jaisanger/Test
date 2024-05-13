@@ -1,0 +1,59 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: update-gl-status
+  namespace: p2m-pay-application
+spec:
+  rules:
+    - host: microservice.apps.ocp4.example.com
+      http:
+        paths:
+          - path: /api/v1/settlement/glstatus/update-active-gls
+            pathType: Prefix
+            backend:
+              service:
+                name: update-gl-status
+                port:
+                  number: 80           
+    - host: microservice.apps.ocp4.example.com
+      http:
+        paths:
+          - path: /api/v1/settlement/cbs/api
+            pathType: Prefix
+            backend:
+              service:
+                name: update-gl-status
+                port:
+                  number: 80
+    - host: microservice.apps.ocp4.example.com
+      http:
+        paths:
+          - path: /api/v1/settlement/cbs/ift
+            pathType: Prefix
+            backend:
+              service:
+                name: update-gl-status
+                port:
+                  number: 80
+    - host: microservice.apps.ocp4.example.com
+      http:
+        paths:
+          - path: /UpdateGLstatus
+            pathType: Prefix
+            backend:
+              service:
+                name: update-gl-status
+                port:
+                  number: 80
+    - host: microservice.apps.ocp4.example.com
+      http:
+        paths:
+          - path: /openapi/UpdateGLstatus
+            pathType: Prefix
+            backend:
+              service:
+                name: update-gl-status
+                port:
+                  number: 80
+
+

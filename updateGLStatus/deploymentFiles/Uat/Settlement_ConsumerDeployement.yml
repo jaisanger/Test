@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: update-gl-status
+  namespace: p2m-pay-application
+  labels:
+    app: update-gl-status
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: update-gl-status
+  template:
+    metadata:
+      labels:
+        app: update-gl-status
+    spec:
+      containers:
+      - name: update-gl-status
+        image: registry.ptafinodev.finopaymentbank.in/repository/pta-docker/finoptaplusupdateglstatus:04-12-2023_1
+        env:
+          - name: TRMYHOST
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+        envFrom:
+        - configMapRef:
+                name: update-gl-status
+        ports:
+        - containerPort: 8080
+        resources: 
+      imagePullSecrets:
+      - name: regsecret

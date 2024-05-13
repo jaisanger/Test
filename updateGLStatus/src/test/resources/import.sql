@@ -1,0 +1,1 @@
+insert into gl_balance values(19,'100001',PARSEDATETIME(FORMATDATETIME(CURRENT_TIMESTAMP(), 'yyyy-MM-dd') || ' 05:00:00', 'yyyy-MM-dd HH:mm:ss'));

@@ -1,0 +1,15 @@
+{
+    "priority": 2,
+    "request": {
+        "method": "POST",
+        "url": "/api/v1/settlement/p2mpay/eod"
+        
+    },
+    "response": {
+        "status": "200",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "bodyFileName": "p2mpay_res.txt"
+    }
+}

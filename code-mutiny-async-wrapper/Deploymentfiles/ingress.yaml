@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: p2m-pay-code-mutiny-async-wrapper
+  namespace: p2m-pay-application
+spec:
+  rules:
+    - host: microservice.apps.ocp4.example.com
+      http:
+        paths:
+          - path: /wrapper/eod
+            pathType: Prefix
+            backend:
+              service:
+                name: code-mutiny-async-wrapper
+                port:
+                  number: 80           
+    - host: microservice.apps.ocp4.example.com
+      http:
+        paths:
+          - path: /wrapper/batch
+            pathType: Prefix
+            backend:
+              service:
+                name: code-mutiny-async-wrapper
+                port:
+                  number: 80

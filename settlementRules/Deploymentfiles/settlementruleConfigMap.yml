@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata: 
+  name: p2m-pay-settlementrules
+  namespace: p2m-pay-application
+data:
+# Packaging
+# quarkus.package.type: fast-jar
+
+# Maximum Java heap to be used during the native image generation
+quarkus.native.native-image-xmx: 4g
+
+quarkus.application.name: ruleChargeAccount
+quarkus.http.test-port: 6331
+%dev.quarkus.http.port: 8080

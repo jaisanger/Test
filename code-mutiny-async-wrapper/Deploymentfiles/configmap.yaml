@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata: code-mutiny-async-wrapper
+  name: 
+  namespace: p2m-pay-application
+data:
+quarkus.devservices.enabled: "false"
+quarkus.http.port: 8080
+com.finobank.service.SettlementResource/mp-rest/url: http://localhost:8081/
+com.finobank.service.SettlementResource/mp-rest/scope: jakarta.inject.Singleton
+quarkus.datasource.db-kind: postgresql
+quarkus.datasource.username: p2madmin
+quarkus.datasource.password: redhat
+quarkus.datasource.jdbc.url: jdbc:postgresql://p2m-uat-db-logical-ha.p2m-uat-db.svc.cluster.local:5432/p2m_pay_transcation_logical
+quarkus.hibernate-orm.database.generation: update
+batchSequence: public.set_daily_settlement_seq_id
+eodSequence: public.set_daily_eod_seq_id

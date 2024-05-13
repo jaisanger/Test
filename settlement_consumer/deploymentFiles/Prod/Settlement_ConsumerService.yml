@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: Settlement_Consumer
+  namespace: finoptaplus
+spec:
+  selector:
+    app: Settlement_Consumer
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080

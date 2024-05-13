@@ -1,0 +1,68 @@
+2023-11-06 19:41:31,913 INFO  [com.fin.pta.ser.SettlementServices] (executor-thread-0) Request recieved  for p2m settlement {"batchId":"batch1","appId":"APPPTA","userClass":"ptauser","executeAt":null,"previousExecutionTime":null,"apiExecutionMode":false,"settlementOfTheDay":"1"} at 2023-11-06T19:41:31.913819 
+2023-11-06 19:41:31,916 INFO  [com.fin.pta.ser.SettlementServices] (executor-thread-2) Request recieved  for p2m settlement {"batchId":"batch5","appId":"APPPTA","userClass":"ptauser","executeAt":null,"previousExecutionTime":null,"apiExecutionMode":false,"settlementOfTheDay":"1"} at 2023-11-06T19:41:31.916613 
+2023-11-06 19:41:31,919 INFO  [com.fin.pta.ser.SettlementServices] (executor-thread-1) Request recieved  for p2m settlement {"batchId":"batch2","appId":"APPPTA","userClass":"ptauser","executeAt":null,"previousExecutionTime":null,"apiExecutionMode":false,"settlementOfTheDay":"1"} at 2023-11-06T19:41:31.919184 
+2023-11-06 19:41:32,278 INFO  [com.fin.pta.rep.SettlementAuditRepository] (executor-thread-1) No parallel running batch for batchId batch2
+2023-11-06 19:41:32,282 INFO  [com.fin.pta.rep.SettlementAuditRepository] (executor-thread-1) Starting settlement for batchId batch2 at Mon Nov 06 19:40:25 IST 2023
+2023-11-06 19:41:33,321 INFO  [com.fin.pta.ser.fin.FinoSettlement] (executor-thread-1) Settlement Batch Received from Rule Engine {"batchId":"batch2","partnerSettlementRules":[{"partnerId":"partner3","ptaPartnerGl":"18013","ptaIntermediaryGl":"12344321","ptaPurchaseGl":"43211234","cbsPartnerGl":"18013","cbsIntermediaryGl":"12344321","cbsPurchaseGl":"43211234","costCenter":"9001","ptaTranType":"PTANREOD","cbsTranType":"PTANREOD","thresholdAmt":"10","thresholdTime":"1"},{"partnerId":"partner4","ptaPartnerGl":"18012","ptaIntermediaryGl":"12344321","ptaPurchaseGl":"43211234","cbsPartnerGl":"18012","cbsIntermediaryGl":"12344321","cbsPurchaseGl":"43211234","costCenter":"9001","ptaTranType":"PTANREOD","cbsTranType":"PTANREOD","thresholdAmt":"10","thresholdTime":"1"}]} .
+
+2023-11-06 19:41:33,322 INFO  [com.fin.pta.rep.SettlementAuditRepository] (executor-thread-1) updating status of batch2 to P2M_POSTING_RUNNING
+2023-11-06 19:41:33,409 INFO  [com.fin.pta.rep.SettlementAuditRepository] (executor-thread-2) No parallel running batch for batchId batch5
+2023-11-06 19:41:33,411 INFO  [com.fin.pta.rep.SettlementAuditRepository] (executor-thread-2) Starting settlement for batchId batch5 at Mon Nov 06 19:40:25 IST 2023
+2023-11-06 19:41:33,619 INFO  [com.fin.pta.ser.fin.FinoSettlement] (executor-thread-1) Running settlement for partner : partner3 with partnerGl : 18013 
+2023-11-06 19:41:34,044 ERROR [com.fin.pta.ser.SettlementTransactions] (executor-thread-1) No transaction to settle for partnerGl 18013.
+2023-11-06 19:41:34,048 INFO  [com.fin.pta.ser.SettlementTransactions] (executor-thread-1) Amount to settle : 0
+2023-11-06 19:41:34,057 ERROR [com.fin.pta.ser.fin.FinoSettlement] (executor-thread-1) Response from settlementTransactions SettlementResponse(responseCode=1, responseMessage=No transaction to Settle).
+2023-11-06 19:41:34,057 INFO  [com.fin.pta.ser.fin.FinoSettlement] (executor-thread-1) Running settlement for partner : partner4 with partnerGl : 18012 
+2023-11-06 19:41:34,248 INFO  [com.fin.pta.rep.SettlementAuditRepository] (executor-thread-2) updating status of batch5 to INITIALIZATION_FAILED
+2023-11-06 19:41:34,443 ERROR [com.fin.pta.ser.SettlementTransactions] (executor-thread-1) No transaction to settle for partnerGl 18012.
+2023-11-06 19:41:34,444 INFO  [com.fin.pta.ser.SettlementTransactions] (executor-thread-1) Amount to settle : 0
+2023-11-06 19:41:34,445 ERROR [com.fin.pta.ser.fin.FinoSettlement] (executor-thread-1) Response from settlementTransactions SettlementResponse(responseCode=1, responseMessage=No transaction to Settle).
+2023-11-06 19:41:34,453 INFO  [com.fin.pta.rep.SettlementAuditRepository] (executor-thread-1) updating status of batch2 to P2M_POSTING_SUCCEEDED
+2023-11-06 19:41:34,649 ERROR [com.fin.pta.ser.fin.FinoSettlement] (executor-thread-2) error occured while getting batch from rule engine.HTTP 500 Internal Server Error
+2023-11-06 19:41:34,658 INFO  [com.fin.pta.rep.SettlementAuditRepository] (executor-thread-2) Stopping Batch due to P2M_POSTING_FAILED
+2023-11-06 19:41:34,798 INFO  [com.fin.pta.ser.SettlementServices] (executor-thread-1) Request recieved  for cbs settlement {"batchId":"batch2","appId":"APPPTA","userClass":"ptauser","executeAt":null,"previousExecutionTime":null,"apiExecutionMode":false,"settlementOfTheDay":"1"} at 2023-11-06T19:41:34.798803 
+2023-11-06 19:41:34,802 INFO  [com.fin.pta.rep.SettlementAuditRepository] (executor-thread-0) No parallel running batch for batchId batch1
+2023-11-06 19:41:34,803 INFO  [com.fin.pta.rep.SettlementAuditRepository] (executor-thread-0) Starting settlement for batchId batch1 at Mon Nov 06 19:40:25 IST 2023
+2023-11-06 19:41:35,065 INFO  [com.fin.pta.ser.SettlementServices] (executor-thread-2) Request recieved  for cbs settlement {"batchId":"batch5","appId":"APPPTA","userClass":"ptauser","executeAt":null,"previousExecutionTime":null,"apiExecutionMode":false,"settlementOfTheDay":"1"} at 2023-11-06T19:41:35.065623 
+2023-11-06 19:41:35,263 INFO  [com.fin.pta.rep.SettlementAuditRepository] (executor-thread-2) No parallel running batch for batchId batch5
+2023-11-06 19:41:35,269 INFO  [com.fin.pta.rep.SettlementAuditRepository] (executor-thread-1) Already running batch for batchId batch2. current status is P2M_POSTING_SUCCEEDED
+2023-11-06 19:41:35,271 INFO  [com.fin.pta.rep.SettlementAuditRepository] (executor-thread-1) updating status of batch2 to CBS_SETTLEMENT_STARTED
+2023-11-06 19:41:35,274 INFO  [com.fin.pta.ser.SettlementServices] (executor-thread-2) Response from SettlementCbs :{"responseCode":"1","responseMessage":"Not a running batch."}
+2023-11-06 19:41:35,282 INFO  [com.fin.pta.ser.SettlementServices] (executor-thread-2) Response from settlementP2mPay :{"responseCode":"1","responseMessage":"Couldn't get batchConfig from rule."}
+2023-11-06 19:41:35,744 SEVERE [io.ope.exp.int.grp.OkHttpGrpcExporter] (OkHttp http://localhost:4317/...) Failed to export spans. The request could not be executed. Full error message: Failed to connect to localhost/127.0.0.1:4317
+2023-11-06 19:41:35,780 INFO  [com.fin.pta.ser.fin.FinoSettlement] (executor-thread-0) Settlement Batch Received from Rule Engine {"batchId":"batch1","partnerSettlementRules":[{"partnerId":"partner1","ptaPartnerGl":"18014","ptaIntermediaryGl":"12344321","ptaPurchaseGl":"43211234","cbsPartnerGl":"18014","cbsIntermediaryGl":"12344321","cbsPurchaseGl":"43211234","costCenter":"9001","ptaTranType":"PTANREOD","cbsTranType":"PTANREOD","thresholdAmt":"10","thresholdTime":"1"},{"partnerId":"partner2","ptaPartnerGl":"18015","ptaIntermediaryGl":"12344321","ptaPurchaseGl":"43211234","cbsPartnerGl":"18015","cbsIntermediaryGl":"12344321","cbsPurchaseGl":"43211234","costCenter":"9001","ptaTranType":"PTANREOD","cbsTranType":"PTANREOD","thresholdAmt":"10","thresholdTime":"1"}]} .
+
+2023-11-06 19:41:35,782 INFO  [com.fin.pta.rep.SettlementAuditRepository] (executor-thread-0) updating status of batch1 to P2M_POSTING_RUNNING
+2023-11-06 19:41:36,076 INFO  [com.fin.pta.ser.fin.FinoSettlement] (executor-thread-0) Running settlement for partner : partner1 with partnerGl : 18014 
+2023-11-06 19:41:36,103 INFO  [com.fin.pta.rep.SettlementAuditRepository] (executor-thread-1) updating status of batch2 to IFT_FILE_GENERATION_RUNNING
+2023-11-06 19:41:36,680 ERROR [com.fin.pta.ser.SettlementTransactions] (executor-thread-0) No transaction to settle for partnerGl 18014.
+2023-11-06 19:41:36,681 INFO  [com.fin.pta.ser.SettlementTransactions] (executor-thread-0) Amount to settle : 0
+2023-11-06 19:41:36,681 ERROR [com.fin.pta.ser.fin.FinoSettlement] (executor-thread-0) Response from settlementTransactions SettlementResponse(responseCode=1, responseMessage=No transaction to Settle).
+2023-11-06 19:41:36,682 INFO  [com.fin.pta.ser.fin.FinoSettlement] (executor-thread-0) Running settlement for partner : partner2 with partnerGl : 18015 
+2023-11-06 19:41:36,904 ERROR [com.fin.pta.ser.fil.IFTFileGenerator] (executor-thread-1) No Unsettled Transaction for 18013
+2023-11-06 19:41:37,106 ERROR [com.fin.pta.ser.SettlementTransactions] (executor-thread-0) No transaction to settle for partnerGl 18015.
+2023-11-06 19:41:37,106 ERROR [com.fin.pta.ser.fil.IFTFileGenerator] (executor-thread-1) No Unsettled Transaction for 18012
+2023-11-06 19:41:37,107 INFO  [com.fin.pta.ser.SettlementTransactions] (executor-thread-0) Amount to settle : 0
+2023-11-06 19:41:37,113 ERROR [com.fin.pta.ser.fin.FinoSettlement] (executor-thread-0) Response from settlementTransactions SettlementResponse(responseCode=1, responseMessage=No transaction to Settle).
+2023-11-06 19:41:37,118 INFO  [com.fin.pta.rep.SettlementAuditRepository] (executor-thread-0) updating status of batch1 to P2M_POSTING_SUCCEEDED
+2023-11-06 19:41:37,124 INFO  [com.fin.pta.rep.SettlementAuditRepository] (executor-thread-1) Batch batch2 settled with ::update settlement_audit set is_running=false,records_count=2 ,success_count=0,failed_count=0,reject_count=2 ,date_responded='Mon Nov 06 19:40:25 IST 2023', processing_status='SETTLEMENT', last_updated='Mon Nov 06 19:40:25 IST 2023',remarks='SETTLEMENT' where batch_id='batch2' and settlement_id='1' and is_running=true.
+
+2023-11-06 19:41:37,516 ERROR [com.fin.pta.ser.fil.IFTFileGenerator] (executor-thread-1) Exception ::javax.ws.rs.WebApplicationException: No Transaction to Settle.
+2023-11-06 19:41:37,520 INFO  [com.fin.pta.ser.SettlementServices] (executor-thread-1) Response from SettlementCbs :{"responseCode":"1","responseMessage":"IFT_FILE_GENERATION_FAILED"}
+2023-11-06 19:41:37,526 INFO  [com.fin.pta.ser.SettlementServices] (executor-thread-1) Response from settlementP2mPay :{"responseCode":"0","responseMessage":"0 partner settled at P2M."}
+2023-11-06 19:41:37,545 INFO  [com.fin.pta.ser.SettlementServices] (executor-thread-0) Request recieved  for cbs settlement {"batchId":"batch1","appId":"APPPTA","userClass":"ptauser","executeAt":null,"previousExecutionTime":null,"apiExecutionMode":false,"settlementOfTheDay":"1"} at 2023-11-06T19:41:37.545268 
+2023-11-06 19:41:37,925 INFO  [com.fin.pta.rep.SettlementAuditRepository] (executor-thread-0) Already running batch for batchId batch1. current status is P2M_POSTING_SUCCEEDED
+2023-11-06 19:41:37,925 INFO  [com.fin.pta.rep.SettlementAuditRepository] (executor-thread-0) updating status of batch1 to CBS_SETTLEMENT_STARTED
+2023-11-06 19:41:38,544 INFO  [com.fin.pta.rep.SettlementAuditRepository] (executor-thread-0) updating status of batch1 to IFT_FILE_GENERATION_RUNNING
+2023-11-06 19:41:39,256 ERROR [com.fin.pta.ser.fil.IFTFileGenerator] (executor-thread-0) No Unsettled Transaction for 18014
+2023-11-06 19:41:39,462 ERROR [com.fin.pta.ser.fil.IFTFileGenerator] (executor-thread-0) No Unsettled Transaction for 18015
+2023-11-06 19:41:39,464 INFO  [com.fin.pta.rep.SettlementAuditRepository] (executor-thread-0) Batch batch1 settled with ::update settlement_audit set is_running=false,records_count=2 ,success_count=0,failed_count=0,reject_count=2 ,date_responded='Mon Nov 06 19:40:25 IST 2023', processing_status='SETTLEMENT', last_updated='Mon Nov 06 19:40:25 IST 2023',remarks='SETTLEMENT' where batch_id='batch1' and settlement_id='1' and is_running=true.
+
+2023-11-06 19:41:39,769 ERROR [com.fin.pta.ser.fil.IFTFileGenerator] (executor-thread-0) Exception ::javax.ws.rs.WebApplicationException: No Transaction to Settle.
+2023-11-06 19:41:39,774 INFO  [com.fin.pta.ser.SettlementServices] (executor-thread-0) Response from SettlementCbs :{"responseCode":"1","responseMessage":"IFT_FILE_GENERATION_FAILED"}
+2023-11-06 19:41:39,778 INFO  [com.fin.pta.ser.SettlementServices] (executor-thread-0) Response from settlementP2mPay :{"responseCode":"0","responseMessage":"0 partner settled at P2M."}
+2023-11-06 19:41:40,750 SEVERE [io.ope.exp.int.grp.OkHttpGrpcExporter] (OkHttp http://localhost:4317/...) Failed to export spans. The request could not be executed. Full error message: Failed to connect to localhost/127.0.0.1:4317
+
+--
+Tests paused
+Press [r] to resume

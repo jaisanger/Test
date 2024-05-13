@@ -1,0 +1,28 @@
+{
+    "priority": 2,
+    "request": {
+        "method": "POST",
+        "url": "/batch-config",
+        "bodyPatterns": [
+            {
+                "equalToJson": {
+                    "settlementConfigRule": [
+                        {
+                            "batchId": "batch2"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "response": {
+        "status": "200",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "bodyFileName": "batch-config_res.json"
+    }
+}
+
+
+

@@ -1,0 +1,59 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: UpdateGLstatus
+  namespace: finoptaplus
+spec:
+  rules:
+    - host: microservice.apps.ocp4.example.com
+      http:
+        paths:
+          - path: /api/v1/settlement/glstatus/update-active-gls
+            pathType: Prefix
+            backend:
+              service:
+                name: UpdateGLstatus
+                port:
+                  number: 80           
+    - host: microservice.apps.ocp4.example.com
+      http:
+        paths:
+          - path: /api/v1/settlement/cbs/api
+            pathType: Prefix
+            backend:
+              service:
+                name: UpdateGLstatus
+                port:
+                  number: 80
+    - host: microservice.apps.ocp4.example.com
+      http:
+        paths:
+          - path: /api/v1/settlement/cbs/ift
+            pathType: Prefix
+            backend:
+              service:
+                name: UpdateGLstatus
+                port:
+                  number: 80
+    - host: microservice.apps.ocp4.example.com
+      http:
+        paths:
+          - path: /UpdateGLstatus
+            pathType: Prefix
+            backend:
+              service:
+                name: UpdateGLstatus
+                port:
+                  number: 80
+    - host: microservice.apps.ocp4.example.com
+      http:
+        paths:
+          - path: /openapi/UpdateGLstatus
+            pathType: Prefix
+            backend:
+              service:
+                name: UpdateGLstatus
+                port:
+                  number: 80
+
+

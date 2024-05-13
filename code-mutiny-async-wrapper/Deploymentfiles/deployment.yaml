@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: p2m-pay-code-mutiny-async-wrapper
+  namespace: p2m-pay-application
+  labels:
+    app: p2m-pay-code-mutiny-async-wrapper
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: p2m-pay-code-mutiny-async-wrapper
+  template:
+    metadata:
+      labels:
+        app: p2m-pay-code-mutiny-async-wrapper
+    spec:
+      containers:
+      - name: p2m-pay-code-mutiny-async-wrapper
+        image: nexus-registry-nexus.apps.ocp4.example.com/finoptaplusbackofficecrud:07-07-2023
+        env:
+          - name: TRMYHOST
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+        envFrom:
+        - configMapRef:
+                name: p2m-pay-code-mutiny-async-wrapper
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: xyz
