@@ -1,4 +1,4 @@
-# code-with-quarkus
+# Quarkus_HSMAcknowledgeNewMasterKey
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
@@ -43,9 +43,13 @@ Or, if you don't have GraalVM installed, you can run the native executable build
 ./mvnw package -Dnative -Dquarkus.native.container-build=true
 ```
 
-You can then execute your native executable with: `./target/code-with-quarkus-1.0.0-SNAPSHOT-runner`
+You can then execute your native executable with: `./target/getaccountdetails_upi-1.0.0-SNAPSHOT-runner`
 
 If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.
+
+## Related Guides
+
+- RESTEasy Reactive ([guide](https://quarkus.io/guides/resteasy-reactive)): A Jakarta REST implementation utilizing build time processing and Vert.x. This extension is not compatible with the quarkus-resteasy extension, or any of the extensions that depend on it.
 
 ## Provided Code
 
@@ -54,3 +58,25 @@ If you want to learn more about building native executables, please consult http
 Easily start your Reactive RESTful Web Services
 
 [Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+
+## Curl
+curl -X 'POST' \
+  'http://localhost:8080/' \
+  -H 'accept: */*' \
+  -H 'X-Correlation-Id: 1234567' \
+  -H 'Content-Type: application/json' \
+  -d '{"UniqueId": "4206932722",    
+  "MobileNo": "",     
+  "IsTxnExternal": "1",     
+  "ClientId": "186",     
+  "ClientFieldDetails": {         
+  "UniqueID": "4206932722",         
+  "Field1": null,        
+  "Field2": null,        
+  "Field3": null },
+  "IsWhiteLabel": 0,     
+  "Category": null,     
+  "AgentClientId": null,     
+  "BankName": null,     
+  "Product": null,     
+  "RFU1": null }'
